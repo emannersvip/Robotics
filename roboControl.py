@@ -1,6 +1,7 @@
 # iRobotCreate 2 controls
 
 import pycreate2
+import time
 
 if __name__ == "__main__":
     # Create a Create2 bot
@@ -22,3 +23,14 @@ if __name__ == "__main__":
 
     bot.start()
     bot.stop()
+
+    # Path to move
+    for lft, rht, dt, s in path:
+        print(s)
+        bot.digit_led_ascii(s)
+        bot.drive_direct(lft, rht)
+        time.sleep(dt)
+    
+    print('Shutting down ... bye')
+    bot.drive_stop()
+    time.sleep(0.1)
