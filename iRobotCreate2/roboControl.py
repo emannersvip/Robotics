@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # iRobotCreate 2 controls
 
 import pycreate2
@@ -12,17 +13,16 @@ if __name__ == "__main__":
 
     # Define a movement path
     path = [
-        [  20,  20, 3, 'for'],
-        [ -20, -20, 3, 'back'],
+        [ 200, 200, 3, 'for'],
+        [-200,-200, 3, 'back'],
         [   0,   0, 1, 'stop'],
-        [  10,   0, 2, 'rite'],
-        [   0,  10, 4, 'left'],
-        [  10,   0, 2, 'rite'],
+        [ 100,   0, 2, 'rite'],
+        [   0, 100, 4, 'left'],
+        [ 100,   0, 2, 'rite'],
         [   0,   0, 1, 'stop'],
     ]
 
     bot.start()
-    bot.stop()
 
     # Path to move
     for lft, rht, dt, s in path:
@@ -31,6 +31,8 @@ if __name__ == "__main__":
         bot.drive_direct(lft, rht)
         time.sleep(dt)
     
+    bot.stop()
     print('Shutting down ... bye')
     bot.drive_stop()
     time.sleep(0.1)
+
