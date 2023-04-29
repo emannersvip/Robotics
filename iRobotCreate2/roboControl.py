@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 # iRobotCreate 2 controls
+# Send to dock:
+# -- https://github.com/iRobotSTEM/CreatePython/blob/main/Create2_TetheredDrive.py
 
 import curses
 import time
@@ -32,6 +34,11 @@ if __name__ == "__main__":
             char = screen.getch()
             if char == ord('q'):
                 break
+            elif char == curses.KEY_UP:
+                screen.addstr(0, 0, 'up ')
+                bot.drive_direct(50,50)
+                time.sleep(2.0)
+                bot.drive_stop()
             elif char == curses.KEY_UP:
                 screen.addstr(0, 0, 'up ')
                 bot.drive_direct(50,50)
