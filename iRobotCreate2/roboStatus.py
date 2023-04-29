@@ -3,10 +3,17 @@
 # https://pypi.org/project/pycreate2/
 
 import curses
-import time
+#import time
+import logging
 
 import pycreate2
 
+# Setup logging of iRobot Create2 data
+logging.basicConfig(filename='sensor.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s')
+# Print timestamp everytime we start the progam
+logging.info('Program BEGIN')
+
+# Setup curses screen
 screen = curses.initscr()
 curses.noecho()
 curses.cbreak()
