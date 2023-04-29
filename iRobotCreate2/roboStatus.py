@@ -13,7 +13,7 @@ import pycreate2
 # Setup logging of iRobot Create2 data
 logging.basicConfig(filename='sensor.log', level=logging.INFO, format='%(asctime)s %(message)s')
 # Print timestamp everytime we start the progam
-logging.info('Program BEGIN')
+logging.info('=========== Program BEGIN ============')
 
 # Setup curses screen
 screen = curses.initscr()
@@ -47,15 +47,16 @@ if __name__ == "__main__":
     # TODO: Fix this to not log percentage while charging
     # Use charger state variable
     battery_life = sensors.battery_charge / sensors.battery_capacity * 100
+    temp_farenheit = ( sensors.temperature * 1.8 ) + 32
 
     logging.info('Charger State: ' + str(sensors.charger_state))
     logging.info('Charger Available: ' + str(sensors.charger_available))
-    logging.info('Battery Capacity: ' + str(sensors.battery_capacity) + ' mAh')
-    logging.info('Battery Charge: ' + str(sensors.battery_charge) + ' mAh (' + str(battery_life) + ')%')
-    logging.info('Temperature: ' + str(sensors.temperature) + ' C')
+    logging.info('Battery Capacity: ' + str(sensors.battery_capacity) + 'mAh')
+    logging.info('Battery Charge: ' + str(sensors.battery_charge) + 'mAh (' + str(battery_life) + ')%')
+    logging.info('Temperature: ' + str(sensors.temperature) + 'C / ' + str(int(temp_farenheit)) + 'F')
 
     screen.addstr(0, 0, str(sensors.charger_state))
-    screen.addstr(1, 0, str(sensors.charger_avilable))
+    screen.addstr(1, 0, str(sensors.charger_available))
     screen.addstr(2, 0, str(sensors.battery_charge))
     screen.addstr(3, 0, str(sensors.battery_capacity))
     screen.addstr(4, 0, str(sensors.temperature))
@@ -90,7 +91,7 @@ if __name__ == "__main__":
         curses.nocbreak(); screen.keypad(0); curses.echo()
         curses.endwin()
         bot.stop()
-        logging.info('Program END')
+        logging.info(' ========== Program END ======================')
     
 #    print('Bot drive stop')
 #    bot.drive_stop()
