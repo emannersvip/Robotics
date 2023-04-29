@@ -4,14 +4,14 @@
 # https://github.com/MomsFriendlyRobotCompany/pycreate2/tree/master/docs/Markdown
 
 import curses
-#import time
 # https://docs.python.org/3/howto/logging.html
 import logging
 
 import pycreate2
 
+logfile = '/home/emanners/Code/iRobotCreate2/sensor.log'
 # Setup logging of iRobot Create2 data
-logging.basicConfig(filename='sensor.log', level=logging.INFO, format='%(asctime)s %(message)s')
+logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
 # Print timestamp everytime we start the progam
 logging.info('=========== Program BEGIN ============')
 
@@ -66,26 +66,6 @@ if __name__ == "__main__":
             char = screen.getch()
             if char == ord('q'):
                 break
-#            elif char == curses.KEY_UP:
-#                screen.addstr(0, 0, 'up ')
-#                bot.drive_direct(50,50)
-#                time.sleep(2.0)
-#                bot.drive_stop()
-#            elif char == curses.KEY_RIGHT:
-#                screen.addstr(0, 0, 'right ')
-#                bot.drive_direct(-25,25)
-#                time.sleep(2.0)
-#                bot.drive_stop()
-#            elif char == curses.KEY_DOWN:
-#                screen.addstr(0, 0, 'down ')
-#                bot.drive_direct(-50,-50)
-#                time.sleep(2.0)
-#                bot.drive_stop()
-#            elif char == curses.KEY_LEFT:
-#                screen.addstr(0, 0, 'left ')
-#                bot.drive_direct(25,-25)
-#                time.sleep(2.0)
-#                bot.drive_stop()
     finally:
         # Shut down cleanly
         curses.nocbreak(); screen.keypad(0); curses.echo()
@@ -93,9 +73,3 @@ if __name__ == "__main__":
         bot.stop()
         logging.info(' ========== Program END ======================')
     
-#    print('Bot drive stop')
-#    bot.drive_stop()
-#    time.sleep(0.1)
-#    print('Bot close')
-#    bot.close()
-
