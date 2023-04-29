@@ -9,7 +9,7 @@ import logging
 import pycreate2
 
 # Setup logging of iRobot Create2 data
-logging.basicConfig(filename='sensor.log', encoding='utf-8', level=logging.INFO, format='%(asctime)s %(message)s')
+logging.basicConfig(filename='sensor.log', level=logging.INFO, format='%(asctime)s %(message)s')
 # Print timestamp everytime we start the progam
 logging.info('Program BEGIN')
 
@@ -40,6 +40,10 @@ if __name__ == "__main__":
     sensors.temperature == sensors[16] 
     sensors.battery_charge == sensors[17] 
     sensors.battery_capacity == sensors[18] 
+
+    logging.info('Temperature: ' + str(sensors.temperature))
+    logging.info('Battery Capacity: ' + str(sensors.battery_capacity))
+    logging.info('Battery Charge: ' + str(sensors.battery_charge))
 
     screen.addstr(0, 0, str(sensors.battery_charge))
     screen.addstr(1, 0, str(sensors.battery_capacity))
@@ -75,6 +79,7 @@ if __name__ == "__main__":
         curses.nocbreak(); screen.keypad(0); curses.echo()
         curses.endwin()
         bot.stop()
+        logging.info('Program END')
     
 #    print('Bot drive stop')
 #    bot.drive_stop()
