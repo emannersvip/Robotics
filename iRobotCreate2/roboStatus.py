@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 # iRobotCreate 2 sensors
 # https://pypi.org/project/pycreate2/
+# https://github.com/MomsFriendlyRobotCompany/pycreate2/tree/master/docs/Markdown
 
 import curses
 #import time
+# https://docs.python.org/3/howto/logging.html
 import logging
 
 import pycreate2
@@ -37,17 +39,26 @@ if __name__ == "__main__":
 
     # Initialize and get sensor data
     sensors = bot.get_sensors()
-    sensors.temperature == sensors[16] 
+    sensors.battery_capacity == sensors[18]
     sensors.battery_charge == sensors[17] 
-    sensors.battery_capacity == sensors[18] 
+    sensors.charger_state == sensors[13] 
+    sensors.charger_available == sensors[24] 
+    sensors.temperature == sensors[16] 
+    # TODO: Fix this to not log percentage while charging
+    # Use charger state variable
+    battery_life = sensors.battery_charge / sensors.battery_capacity * 100
 
-    logging.info('Temperature: ' + str(sensors.temperature))
-    logging.info('Battery Capacity: ' + str(sensors.battery_capacity))
-    logging.info('Battery Charge: ' + str(sensors.battery_charge))
+    logging.info('Charger State: ' + str(sensors.charger_state))
+    logging.info('Charger Available: ' + str(sensors.charger_available))
+    logging.info('Battery Capacity: ' + str(sensors.battery_capacity) + ' mAh')
+    logging.info('Battery Charge: ' + str(sensors.battery_charge) + ' mAh (' + str(battery_life) + ')%')
+    logging.info('Temperature: ' + str(sensors.temperature) + ' C')
 
-    screen.addstr(0, 0, str(sensors.battery_charge))
-    screen.addstr(1, 0, str(sensors.battery_capacity))
-    screen.addstr(2, 0, str(sensors.temperature))
+    screen.addstr(0, 0, str(sensors.charger_state))
+    screen.addstr(1, 0, str(sensors.charger_avilable))
+    screen.addstr(2, 0, str(sensors.battery_charge))
+    screen.addstr(3, 0, str(sensors.battery_capacity))
+    screen.addstr(4, 0, str(sensors.temperature))
 
     try:
         while True:
