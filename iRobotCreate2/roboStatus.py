@@ -13,7 +13,7 @@ logfile = '/home/emanners/Code/iRobotCreate2/sensor.log'
 # Setup logging of iRobot Create2 data
 logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
 # Print timestamp everytime we start the progam
-logging.info('=========== Program BEGIN ============')
+logging.info(' =========== Program BEGIN ====================')
 
 # Setup curses screen
 screen = curses.initscr()
