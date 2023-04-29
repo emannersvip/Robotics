@@ -38,7 +38,11 @@ if __name__ == "__main__":
     bot.full()
 
     # Initialize and get sensor data
-    sensors = bot.get_sensors()
+    try:
+        sensors = bot.get_sensors()
+    finally:
+        print('Done')
+
     sensors.battery_capacity == sensors[18]
     sensors.battery_charge == sensors[17] 
     sensors.charger_state == sensors[13] 
