@@ -34,7 +34,7 @@ screen.addstr(2,  2, 'Press \'D\' to get DEBUG info' )
 
 screen.addstr(5,  2, '======================================')
 screen.addstr(6,  2, '#         Pan Tilt Controls          #')
-screen.addstr(7,  2, '# URL: http://192.168.0.177:8081     #')
+screen.addstr(7,  2, '# URL: ssh://192.168.0.177:8022      #')
 screen.addstr(8,  2, '#                                    #')
 screen.addstr(9,  2, '#                                    #')
 screen.addstr(10, 2, '#                Up                  #')
@@ -44,7 +44,8 @@ screen.addstr(13, 2, '#                                    #')
 screen.addstr(14, 2, '#                                    #')
 screen.addstr(15, 2, '#                                    #')
 screen.addstr(16, 2, '# URL: http://192.168.0.177:8081     #')
-screen.addstr(17, 2, '======================================')
+screen.addstr(17, 2, '# URL: http://24.229.161.67:8081     #')
+screen.addstr(18, 2, '======================================')
 
 # Process active key presses:
 # -- Letter p will take a picture and store filename (until we get to controller)
