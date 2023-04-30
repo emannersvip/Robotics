@@ -27,6 +27,24 @@ pantilthat.tilt(b)      # TODO: Make this happen smoothly
 deltaPan=1.0
 deltaTilt=1.0
 
+
+screen.addstr(1,  2, 'Click     to QUIT' )
+screen.addstr(1,  8, '\'Q\'', curses.A_BLINK )
+
+screen.addstr(5,  2, '======================================')
+screen.addstr(6,  2, '#         Pan Tilt Controls          #')
+screen.addstr(7,  2, '# URL: http://192.168.0.177:8081     #')
+screen.addstr(8,  2, '#                                    #')
+screen.addstr(9,  2, '#                                    #')
+screen.addstr(10, 2, '#                Up                  #')
+screen.addstr(11, 2, '#           Left    Right            #')
+screen.addstr(12, 2, '#               Down                 #')
+screen.addstr(13, 2, '#                                    #')
+screen.addstr(14, 2, '#                                    #')
+screen.addstr(15, 2, '#                                    #')
+screen.addstr(16, 2, '# URL: http://192.168.0.177:8081     #')
+screen.addstr(17, 2, '======================================')
+
 # Process active key presses:
 # -- Letter p will take a picture and store filename (until we get to controller)
 #
