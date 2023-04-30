@@ -28,8 +28,9 @@ deltaPan=1.0
 deltaTilt=1.0
 
 
-screen.addstr(1,  2, 'Click     to QUIT' )
+screen.addstr(1,  2, 'Press     to QUIT' )
 screen.addstr(1,  8, '\'Q\'', curses.A_BLINK )
+screen.addstr(2,  2, 'Press \'D\' to get DEBUG info' )
 
 screen.addstr(5,  2, '======================================')
 screen.addstr(6,  2, '#         Pan Tilt Controls          #')
