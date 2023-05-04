@@ -12,15 +12,37 @@
 #
 #---------------------------------------------------------------
 
+import logging
 import os
 import subprocess
 import sys
 import time
 
+# https://pypi.org/project/discord-webhook/
+from discord_webhook import DiscordWebhook
+
+# Functions
 def send_alert():
     print('Send alert')
+    response = webhook.execute()
     print(result.stdout.decode())
     return
+
+logfile = '/home/emanners/Code/Production/alert_log.log'
+# Setup logging of alerts
+logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
+# Print timestamp everytime we start the program
+logging.info(' ================= Program BEGIN ======================')
+
+webhook_url = 'https://discord.com/api/webhooks/1103493285705687101/nfzsLa2zGyQaXCYCMN9NuoD9xaWNpCfEe4ARiYKaOe_h34sNKbu_WCyPDtZyuFg6x8HJ'
+#webhook_content = 'EOM Webhook Message'
+webhook_content = ':alarm_clock: Philipsburg Rear: Motion Detected'
+webhook_username = ':alarm_clock: Philipsburg Rear: Motion Detected'
+#webhook = DiscordWebhook(url=webhook_url, content=webhook_content)
+webhook = DiscordWebhook(url=webhook_url, username=webhook_username)
+with open('/motion/snapshot/phillipsburg_snap_05012023-160000-snapshot.jpg', 'rb') as f:
+	webhook.add_file(file=f.read(), filename='snapshot.jpg')
+response = webhook.execute()
 
 # Previous directory listing file
 prev_file = '/tmp/motion_diff1'
