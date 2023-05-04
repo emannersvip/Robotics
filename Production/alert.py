@@ -42,7 +42,7 @@ webhook_username = ':alarm_clock: Philipsburg Rear: Motion Detected'
 webhook = DiscordWebhook(url=webhook_url, username=webhook_username)
 with open('/motion/snapshot/phillipsburg_snap_05012023-160000-snapshot.jpg', 'rb') as f:
 	webhook.add_file(file=f.read(), filename='snapshot.jpg')
-response = webhook.execute()
+#response = webhook.execute()
 
 # Previous directory listing file
 prev_file = '/tmp/motion_diff1'
