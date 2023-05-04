@@ -21,8 +21,16 @@ screen.keypad(True)         # map arrow keys to special values
 # set start up servo positions
 a = -23.0
 b = -13.0
-pantilthat.pan(a)       # TODO: Make this happen smootly
-pantilthat.tilt(b)      # TODO: Make this happen smoothly
+
+try:
+    pantilthat.pan(a)       # TODO: Make this happen smootly
+    pantilthat.tilt(b)      # TODO: Make this happen smoothly
+except PermissionError as e:
+    curses.nocbreak(); screen.keypad(0); curses.echo(); curses.endwin()
+    print('Can\'t load the pantilt module. Please check the HW.')
+    print(e)
+    exit()
+
 # set arrow key delta
 deltaPan=1.0
 deltaTilt=1.0

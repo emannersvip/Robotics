@@ -4,7 +4,11 @@
 # TODO:
 # -- Send an alert to discord
 # -- Email latest snapshot
+# *- Setup systemd service in Ansible
+#
 # Author: Edson Manners, 2023
+#
+# Version: 01.1rc
 #
 #---------------------------------------------------------------
 
