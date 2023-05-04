@@ -25,7 +25,6 @@ from discord_webhook import DiscordWebhook
 def send_alert():
     print('Send alert')
     response = webhook.execute()
-    print(result.stdout.decode())
     return
 
 logfile = '/home/emanners/Code/Production/alert_log.log'
@@ -40,7 +39,7 @@ webhook_content = ':alarm_clock: Philipsburg Rear: Motion Detected'
 webhook_username = ':alarm_clock: Philipsburg Rear: Motion Detected'
 #webhook = DiscordWebhook(url=webhook_url, content=webhook_content)
 webhook = DiscordWebhook(url=webhook_url, username=webhook_username)
-with open('/motion/snapshot/phillipsburg_snap_05012023-160000-snapshot.jpg', 'rb') as f:
+with open('/motion/lastsnap.jpg', 'rb') as f:
 	webhook.add_file(file=f.read(), filename='snapshot.jpg')
 #response = webhook.execute()
 
@@ -48,7 +47,7 @@ with open('/motion/snapshot/phillipsburg_snap_05012023-160000-snapshot.jpg', 'rb
 prev_file = '/tmp/motion_diff1'
 next_file = '/tmp/motion_diff2'
 # Default will be 5 minutes (300 seconds)
-sleep_time = 120
+sleep_time = 300
 
 try:
     while(True):
