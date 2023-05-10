@@ -27,6 +27,28 @@ def send_alert():
     response = webhook.execute()
     return
 
+def get_last_photo():
+    print('Send photo')
+    search_string = 'phillip'
+    # Get list of all photos in reverse chronological order
+    result = subprocess.run(['ls', '-larth', '/motion/photo'], capture_output=True)
+    # Split into a new-line separated list
+    last_list = result.stdout.decode().splitlines()
+    tmp_list = []
+    # Remove current '.' and parent '..' directory listings if they're the last entries.
+    for i in range(len(last_list)):
+        if last_list[i].find(search_string):
+            continue
+        else:
+            tmp_list.append(i)
+    # Now pop the un-needied entries ow that we're no longer iterating through the list that
+    # we're changing. Reverse the list so the pop operation doesn't mess up the indices.
+    tmp_list.reverse()
+    for i in tmp_list:
+        last_list.pop(i)
+    # Return the eight entry (filename) of the last entry (latest photo) in the array
+    return '/motion/photo/' + last_list[-1].split()[8]
+
 logfile = '/home/emanners/Code/Production/alert_log.log'
 # Setup logging of alerts
 logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
@@ -34,14 +56,13 @@ logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(
 logging.info(' ================= Program BEGIN ======================')
 
 webhook_url = 'https://discord.com/api/webhooks/1103493285705687101/nfzsLa2zGyQaXCYCMN9NuoD9xaWNpCfEe4ARiYKaOe_h34sNKbu_WCyPDtZyuFg6x8HJ'
-#webhook_content = 'EOM Webhook Message'
 webhook_content = ':alarm_clock: Philipsburg Rear: Motion Detected'
 webhook_username = ':alarm_clock: Philipsburg Rear: Motion Detected'
-#webhook = DiscordWebhook(url=webhook_url, content=webhook_content)
+#webhook_last_pic = '/motion/lastsnap.jpg'
+webhook_last_pic = get_last_photo()
 webhook = DiscordWebhook(url=webhook_url, username=webhook_username)
-with open('/motion/lastsnap.jpg', 'rb') as f:
+with open(webhook_last_pic, 'rb') as f:
 	webhook.add_file(file=f.read(), filename='snapshot.jpg')
-#response = webhook.execute()
 
 # Previous directory listing file
 prev_file = '/tmp/motion_diff1'
