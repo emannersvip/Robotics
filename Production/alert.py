@@ -74,7 +74,7 @@ webhook = DiscordWebhook(url=webhook_url, username=webhook_username)
 prev_file = '/tmp/motion_diff1'
 next_file = '/tmp/motion_diff2'
 # Default will be 5 minutes (300 seconds)
-sleep_time = 300
+sleep_time = 5
 
 try:
     while(True):
