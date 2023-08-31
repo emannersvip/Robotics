@@ -2,7 +2,7 @@ file {'motion_service':
   ensure  => present,
   path    => '/lib/systemd/system/motion.service',
   #content => template('motion.service.erb'),
-  source  => 'file:motion.service',
+  source  => 'file:/../files/motion.service',
 }
 
 file {'motion_binary':
