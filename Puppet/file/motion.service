@@ -1,0 +1,41 @@
+#
+#   This file is part of Motion.
+#
+#   Motion is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   Motion is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Motion.  If not, see <https://www.gnu.org/licenses/>.
+#
+#
+
+[Unit]
+Description=Motion - Security camera monitoring software.EOM
+Documentation=man:motion(1)
+After=local-fs.target network.target
+
+[Service]
+UMask=002
+ExecStart=/usr/local/bin/motion
+Type=simple
+
+# Set StandardError=journal to use journald to log messages from motion.
+# See also the "log_file" config file option in motion(1) and systemd.service(5).
+StandardError=null
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+
+# Don't restart if unconfigured / misconfigured  e.g. daemon disabled
+# in defaults file.  See also /usr/include/sysexits.h or sysexits(3)
+RestartPreventExitStatus=78
+
+[Install]
+WantedBy=multi-user.target

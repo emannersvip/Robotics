@@ -1,7 +1,8 @@
 file {'motion_service':
   ensure  => present,
   path    => '/lib/systemd/system/motion.service',
-  content => template('motion.service.erb'),
+  #content => template('motion.service.erb'),
+  source  => 'puppet:///motion.service',
 }
 
 file {'motion_binary':
@@ -11,7 +12,7 @@ file {'motion_binary':
 }
 
 service {'motion':
-  ensure => running,
+  ensure     => running,
   hasrestart => true,
   hasstatus  => true,
   require    => File['motion_service'],
