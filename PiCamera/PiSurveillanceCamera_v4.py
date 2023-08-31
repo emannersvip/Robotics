@@ -6,9 +6,7 @@
 # https://github.com/raspberrypi/picamera2/blob/main/examples/mjpeg_server.py
 
 # TODO:
-#  - Make a systemctl service
 #  - Add a config file
-#  - Add to git/Github
 
 import io
 import logging
