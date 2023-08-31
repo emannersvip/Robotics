@@ -8,7 +8,7 @@ file {'motion_service':
 file {'motion_binary':
   ensure => present,
   path   => '/usr/local/bin/motion',
-  source => '../files/PiSurveillanceCamera.py',
+  source => '/files/PiSurveillanceCamera.py',
 }
 
 service {'motion':
