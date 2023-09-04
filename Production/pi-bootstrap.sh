@@ -47,6 +47,16 @@ fi
 
 if test -f "${SSH_DIR}/id_ecdsa"; then
 	echo '--It looks like SSH keys are already in place' 
+	if test -f "${SSH_DIR}/config"; then
+		echo '--SSH config is also in place. Good!' 
+	else
+		cat << EOF > ${SSH_DIR}/config
+Host github.com
+        AddKeysToAgent yes
+        IdentityFile ~/.ssh/id_ecdsa
+EOF
+
+
 else
 	echo '--It looks like SSH keys are *NOT* setup. Copy SSH keys at first convenience'
 fi
