@@ -25,7 +25,7 @@ echo '--Update apt cache. Pleae run "sudo apt upgrade"'
 apt -y upgrade
 
 echo '--Adding Pi camera software...'
-apt -y install vim git
+apt -y install vim git screen
 
 echo '--Adding Pi camera software...'
 # https://github.com/raspberrypi/picamera2#installation
