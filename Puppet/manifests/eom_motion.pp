@@ -1,3 +1,5 @@
+# Systemd service config for Raspberry Pi Web Camera 
+
 file {'motion_service':
   ensure  => present,
   path    => '/lib/systemd/system/motion.service',
