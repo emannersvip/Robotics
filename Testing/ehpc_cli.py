@@ -11,6 +11,7 @@ import sqlite3
 
 # Initialize the environment
 sql_conn = sqlite3.connect('ehpc.db')
+sql_cur = sql_conn.cursor()
 
 @click.group()
 def ehpc_cli():
@@ -26,8 +27,9 @@ def cluster():
     init_cluster_db()
 
 def init_cluster_db():
-    sql = 'CREATE TABLE cluster (id INTEGER, name TEXT, datacenter TEXT, login BOOLEAN, scheduler BOOLEAN, active BOOLEAN)'
-    sql_conn.execute(sql)
+    # https://www.sqlitetutorial.net/sqlite-create-table/
+    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
+    sql_cur.execute(sql)
 
 @ehpc_cli.group()
 def login():
