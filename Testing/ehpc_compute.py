@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 class ComputeNode:
-    name    = 'compute1'
-    ip      = '192.168.200.1'
-    queue   = 'cpu'
+    def __init__(self,name,queue):
+        self.name    = name
+        self.ip      = '192.168.200.1'
+        self.queue   = 'cpu'
 

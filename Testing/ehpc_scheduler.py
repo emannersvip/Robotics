@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-class ChesdularNode:
-    name        = 'slurm1'
-    ip          = '192.168.99.1'
-    scheduler   = 'slurm'   # Scheduler type ( SLURM, PBS, etc. used to point to install template)
+class SchedulerNode:
+    def __init__(self,name,scheduler):
+        self.name        = name
+        self.ip          = '192.168.99.1'
+        self.scheduler   = scheduler   # Scheduler type ( SLURM, PBS, etc. used to point to install template)
