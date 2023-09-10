@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 class LoginNode:
+    """EHPC class that defines Login Nodes"""
     def __init__(self, name, ip):
         self.name    = name
         self.ip      = '192.168.100.1'

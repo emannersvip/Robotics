@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 class SchedulerNode:
+    """EHPC class that defines Scheduler(s)"""
     def __init__(self,name,scheduler):
         self.name        = name
         self.ip          = '192.168.99.1'
