@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 
-# https://click.palletsprojects.com/en/7.x/
-# https://geekyhumans.com/how-to-create-cli-in-python/
-
 from colorama import Fore, Back, Style
 from ehpc_cluster import Cluster
 
+# https://click.palletsprojects.com/en/7.x/
+# https://geekyhumans.com/how-to-create-cli-in-python/
 import click
+# https://dev.pythonlibrary.org/2021/09/30/sqlite/
 import sqlite3
 
 # Initialize the environment
-sqlite3.connect('ehpc.db')
+sql_conn = sqlite3.connect('ehpc.db')
 
 @click.group()
 def ehpc_cli():
@@ -38,6 +38,12 @@ def scheduler():
 @ehpc_cli.group()
 def status():
     """All comannds related to Global system status"""
+
+def db_check_cluster_status(sql_conn):
+    # TODOD: Check that at least on cluster exists and determine it's status
+    sql = 'SELECT * from CLUSTER where...'
+    return
+
 
 #pcluster = Cluster('picamera')
 
