@@ -6,3 +6,4 @@ class Cluster:
         # A cluster only beconems active when it has a valid login node (role) and scheduler node (role).
         self.status = 'inactive'
         self.name   = name
+        print('New cluster %s created.', name)
