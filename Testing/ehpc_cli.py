@@ -35,7 +35,12 @@ def cluster():
 @cluster.command()
 def status():
     """This is a subcommand"""
-    click.echo('cluster status')
+    click.echo('Show cluster status')
+
+@cluster.command()
+def list():
+    """This is a subcommand"""
+    click.echo('List created clusters')
 
 @ehpc_cli.group()
 def login():
