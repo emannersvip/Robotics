@@ -26,10 +26,15 @@ def cluster():
     # Initialize cluster DB if not already initilaized
     init_cluster_db()
 
-def init_cluster_db():
-    # https://www.sqlitetutorial.net/sqlite-create-table/
-    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
-    sql_cur.execute(sql)
+#def init_cluster_db():
+#    # https://www.sqlitetutorial.net/sqlite-create-table/
+#    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
+#    sql_cur.execute(sql)
+
+@ehpc_cli.command()
+def status():
+    pass
+
 
 @ehpc_cli.group()
 def login():
