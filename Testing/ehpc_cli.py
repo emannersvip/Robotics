@@ -22,6 +22,12 @@ def cluster():
     # If at least one cluster exists operate normally 
     # Else badger/notify the user of the cluster's inactive status and remediation steps.
     #   I.e.Create a login and scheduler node.
+    # Initialize cluster DB if not already initilaized
+    init_cluster_db()
+
+def init_cluster_db():
+    sql = 'CREATE TABLE cluster (id INTEGER, name TEXT, datacenter TEXT, login BOOLEAN, scheduler BOOLEAN, active BOOLEAN)'
+    sql_conn.execute(sql)
 
 @ehpc_cli.group()
 def login():
