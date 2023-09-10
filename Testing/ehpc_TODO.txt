@@ -1,0 +1,8 @@
+
+
+TODO:
+
+
+Long_Term:
+Single web API for both the web page and the CLI to interact with.
+File based DB for speed? Fastest DB for reads??
