@@ -3,7 +3,7 @@
 from colorama import Fore, Back, Style
 from ehpc_cluster import Cluster
 
-# https://click.palletsprojects.com/en/7.x/
+# https://click.palletsprojects.com/en/8.1.x/
 # https://geekyhumans.com/how-to-create-cli-in-python/
 import click
 # https://dev.pythonlibrary.org/2021/09/30/sqlite/
