@@ -24,7 +24,7 @@ def cluster():
     # Else badger/notify the user of the cluster's inactive status and remediation steps.
     #   I.e.Create a login and scheduler node.
     # Initialize cluster DB if not already initilaized
-    init_cluster_db()
+    # init_cluster_db()
 
 #def init_cluster_db():
 #    # https://www.sqlitetutorial.net/sqlite-create-table/
