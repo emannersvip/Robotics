@@ -15,4 +15,6 @@ $: Mandatory in every cluster
  : be at least one in existence.
 ^: Optional 
 
+Cluster: A cluster needs at least one login node and scheduler node to be active.
+LoginNode: A login node has to belong to at least one cluster.
 Compute Node: A compute node has to belong to at least one queue to be valid.
