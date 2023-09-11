@@ -10,8 +10,8 @@ import click
 import sqlite3
 
 # Initialize the environment
-sql_conn = sqlite3.connect('ehpc.db')
-sql_cur = sql_conn.cursor()
+sql_con = sqlite3.connect('ehpc.db')
+sql_cur = sql_con.cursor()
 
 @click.group()
 def ehpc_cli():
@@ -34,12 +34,12 @@ def cluster():
 
 @cluster.command()
 def status():
-    """This is a subcommand"""
+    """This is a cluster subcommand"""
     click.echo('Show cluster status')
 
 @cluster.command()
 def list():
-    """This is a subcommand"""
+    """This is a cluster subcommand"""
     click.echo('List created clusters')
 
 @ehpc_cli.group()
@@ -67,4 +67,9 @@ def db_check_cluster_status(sql_conn):
 #pcluster = Cluster('picamera')
 
 if __name__ == '__main__':
+    # Check for the existence of SQL tables
+    sql_cur.execute('SELECT * FROM cluster')
+    #sql_con.commit()
+
     ehpc_cli(prog_name='ehpc')
+
