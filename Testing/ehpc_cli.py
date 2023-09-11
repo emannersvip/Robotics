@@ -27,10 +27,10 @@ def cluster():
     # Initialize cluster DB if not already initilaized
     # init_cluster_db()
 
-#def init_cluster_db():
-#    # https://www.sqlitetutorial.net/sqlite-create-table/
-#    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
-#    sql_cur.execute(sql)
+def init_cluster_db():
+    # https://www.sqlitetutorial.net/sqlite-create-table/
+    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
+    sql_cur.execute(sql)
 
 @cluster.command()
 def status():
@@ -68,8 +68,18 @@ def db_check_cluster_status(sql_conn):
 
 if __name__ == '__main__':
     # Check for the existence of SQL tables
-    sql_cur.execute('SELECT * FROM cluster')
-    #sql_con.commit()
+    # https://www.w3schools.com/python/python_try_except.asp
+    try:
+        sql = 'SELECT * FROM cluster'
+        sql_cur.execute(sql)
+    except sqlite3.OperationalError:
+        init_cluster_db()
+    except:
+        print('Unhandled exception.')
+    finally:
+        pass
 
     ehpc_cli(prog_name='ehpc')
 
+
+    #sql_con.commit()
