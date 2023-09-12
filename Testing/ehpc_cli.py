@@ -35,7 +35,7 @@ def cluster():
         if res.fetchone == None:
             print('Cluster is empty, please create a new cluster with `ehpc cluster create <cluster name>`')
         else:
-            print(res.fetchone)
+            print("bob %s", res.fetchall)
     except sqlite3.OperationalError:
         print("DB %s not found. Creating a new one.", ehpc_db_file)
         init_cluster_db()
