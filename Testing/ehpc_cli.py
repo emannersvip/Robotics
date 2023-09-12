@@ -32,10 +32,10 @@ def cluster():
         #sql = 'SELECT name FROM sqlite_master WHERE name="cluster"'
         sql = 'SELECT * FROM cluster'
         res = sql_cur.execute(sql)
-        if not res.fetchone:
+        if not res.fetchall():
             print('Cluster is empty, please create a new cluster with `ehpc cluster create <cluster name>`')
         else:
-            print('TODO: FIx check for empty table')
+            print('TODO: Fix check for empty table')
     except sqlite3.OperationalError:
         print("DB %s not found. Creating a new one.", ehpc_db_file)
         init_cluster_db()
