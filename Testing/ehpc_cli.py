@@ -51,19 +51,20 @@ def init_cluster_db():
 
 @cluster.command()
 def status():
-    """This is a cluster subcommand"""
+    """Show cluster status"""
     click.echo('Show cluster status')
 
 @cluster.command()
 def list():
-    """This is a cluster subcommand"""
+    """List created clusters"""
     click.echo('List created clusters')
 
 @cluster.command()
 def create():
-    """This is a cluster subcommand"""
+    """Create cluster"""
     click.echo('Create cluster')
-    sql = 'INSERT INTO cluster VALUES()'
+    sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
+    sql_cur.execute(sql)
 
 @ehpc_cli.group()
 def login():
