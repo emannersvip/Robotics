@@ -30,8 +30,9 @@ def cluster():
     # https://www.w3schools.com/python/python_try_except.asp
     try:
         sql = 'SELECT * FROM cluster'
-        result = sql_cur.execute(sql)
-        print(result)
+        res = sql_cur.execute(sql)
+        if res.fetchone == None:
+            print('Cluster is empty, please create a new cluster with `ehpc cluster create <cluster name>')
     except sqlite3.OperationalError:
         print("DB %s not found. Creating a new one.", ehpc_db_file)
         init_cluster_db()
