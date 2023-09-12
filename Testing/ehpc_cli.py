@@ -54,7 +54,7 @@ def status():
     """This is a cluster subcommand"""
     click.echo('Show cluster status')
 
-@cluster.command()
+# @cluster.command()
 def list():
     """This is a cluster subcommand"""
     click.echo('List created clusters')
