@@ -46,7 +46,7 @@ def cluster():
 
 def init_cluster_db():
     # https://www.sqlitetutorial.net/sqlite-create-table/
-    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
+    sql = 'CREATE TABLE cluster (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, datacenter TEXT NOT NULL, login BOOLEAN NOT NULL, scheduler BOOLEAN NOT NULL, active BOOLEAN NOT NULL)'
     sql_cur.execute(sql)
 
 @cluster.command()
@@ -54,10 +54,16 @@ def status():
     """This is a cluster subcommand"""
     click.echo('Show cluster status')
 
-# @cluster.command()
+@cluster.command()
 def list():
     """This is a cluster subcommand"""
     click.echo('List created clusters')
+
+@cluster.command()
+def create():
+    """This is a cluster subcommand"""
+    click.echo('Create cluster')
+    sql = 'INSERT INTO cluster VALUES()'
 
 @ehpc_cli.group()
 def login():
