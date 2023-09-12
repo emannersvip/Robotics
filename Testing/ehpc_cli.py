@@ -10,7 +10,8 @@ import click
 import sqlite3
 
 # Initialize the environment
-sql_con = sqlite3.connect('ehpc.db')
+ehpc_db_file = 'ehpc.db'
+sql_con = sqlite3.connect(ehpc_db_file)
 sql_cur = sql_con.cursor()
 
 @click.group()
@@ -29,14 +30,15 @@ def cluster():
     # https://www.w3schools.com/python/python_try_except.asp
     try:
         sql = 'SELECT * FROM cluster'
-        sql_cur.execute(sql)
-    # init_cluster_db()
+        result = sql_cur.execute(sql)
+        print(result)
     except sqlite3.OperationalError:
+        print("DB %s not found. Creating a new one.", ehpc_db_file)
         init_cluster_db()
     except:
-        print('Unhandled exception.')
+        print('Unhandled generic exception.')
     finally:
-        pass
+        sql_con.commit()
 
 def init_cluster_db():
     # https://www.sqlitetutorial.net/sqlite-create-table/
@@ -80,5 +82,3 @@ def db_check_cluster_status(sql_conn):
 if __name__ == '__main__':
 
     ehpc_cli(prog_name='ehpc')
-
-    #sql_con.commit()
