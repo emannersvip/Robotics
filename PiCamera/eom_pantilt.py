@@ -9,6 +9,10 @@ import time
 
 import pantilthat
 
+TODO:
+- Make IPs be dynamic.
+- Add a notification for hitting the limits of pan and tilt.
+
 pantilthat.idle_timeout(0.5)
 
 # Set up key mappings and curses for arrow key responses
