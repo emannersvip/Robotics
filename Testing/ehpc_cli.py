@@ -14,12 +14,11 @@ ehpc_db_file = 'ehpc.db'
 sql_con = sqlite3.connect(ehpc_db_file)
 sql_cur = sql_con.cursor()
 
-@click.group()
-def ehpc_cli():
-    """The eHPC CLI"""
+#@click.group()
+#def ehpc_cli():
+#    """The eHPC CLI"""
 
 @ehpc_cli.group()
-#@ehpc_cli.group(chain=True, no_args_is_help=False)
 def cluster():
     """All comannds related to clusters"""
     # If at least one cluster exists operate normally 
