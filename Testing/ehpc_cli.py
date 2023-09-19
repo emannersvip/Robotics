@@ -53,8 +53,6 @@ def init_cluster_db():
 def status():
     """Show cluster status"""
     click.echo('Show cluster status')
-def eom_bob():
-    pass
 
 @cluster.command()
 def list():
@@ -62,7 +60,7 @@ def list():
     click.echo('List created clusters')
 
 @cluster.command()
-def create():
+def create('name'):
     """Create cluster"""
     click.echo('Create cluster')
     sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
