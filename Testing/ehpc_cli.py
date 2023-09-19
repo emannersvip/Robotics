@@ -58,8 +58,8 @@ def list():
     """List created clusters"""
     click.echo('List created clusters')
 
-@cluster.command('name')
-def create():
+@cluster.command('create')
+def create('name'):
     """Create cluster"""
     click.echo('Create cluster')
     sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
