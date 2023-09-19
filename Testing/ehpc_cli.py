@@ -53,6 +53,8 @@ def init_cluster_db():
 def status():
     """Show cluster status"""
     click.echo('Show cluster status')
+def eom_bob():
+    pass
 
 @cluster.command()
 def list():
