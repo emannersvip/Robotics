@@ -14,9 +14,9 @@ ehpc_db_file = 'ehpc.db'
 sql_con = sqlite3.connect(ehpc_db_file)
 sql_cur = sql_con.cursor()
 
-#@click.group()
-#def ehpc_cli():
-#    """The eHPC CLI"""
+@click.command()
+def ehpc_cli():
+    """The eHPC CLI"""
 
 @ehpc_cli.command()
 def cluster():
