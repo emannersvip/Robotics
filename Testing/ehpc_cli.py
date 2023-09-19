@@ -58,8 +58,7 @@ def list():
     """List created clusters"""
     click.echo('List created clusters')
 
-@cluster.command()
-@cluster.argument('name')
+@cluster.command('name')
 def create():
     """Create cluster"""
     click.echo('Create cluster')
