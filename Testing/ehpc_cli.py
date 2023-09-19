@@ -18,7 +18,7 @@ sql_cur = sql_con.cursor()
 #def ehpc_cli():
 #    """The eHPC CLI"""
 
-@ehpc_cli.group()
+@ehpc_cli.command()
 def cluster():
     """All comannds related to clusters"""
     # If at least one cluster exists operate normally 
