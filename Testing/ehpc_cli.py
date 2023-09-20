@@ -59,8 +59,7 @@ def list():
     click.echo('Listing created clusters')
     #if cluster_exists():
     if 5 > 2:
-        print('True')
-        sql = 'SELECT * from cluster;'
+        sql = 'SELECT name from cluster;'
         res = sql_cur.execute(sql)
         print(res.fetchone())
 
