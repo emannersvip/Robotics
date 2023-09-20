@@ -4,3 +4,5 @@
 /PiCamera/buster_motion_4.5.1-1_armhf.deb
 /iRobotCreate2/sensor.log
 /Production/alert_log.log
+Testing/ehpc.db
+Testing/__pycache__/ehpc_cluster.cpython-310.pyc
