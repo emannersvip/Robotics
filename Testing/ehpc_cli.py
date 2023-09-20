@@ -77,8 +77,8 @@ def create(name):
         sql_con.commit()
     except sqlite3.IntegrityError:
         print("Name {} most likely not unique. Check for uniqness and try create command again.".format(name))
-    except:
-        print('Unhandled generic exception.')
+    except Exception as e:
+        print("Unhandled generic exception: {}".format(e))
     #finally:
 
 @ehpc_cli.group()
