@@ -94,6 +94,7 @@ def login():
 
 @login.command()
 def status():
+    # TODO: Check cluster for login status then proceed likewise.
     pass
 
 @ehpc_cli.group()
