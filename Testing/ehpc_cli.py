@@ -67,11 +67,12 @@ def list():
 @click.argument('name')
 def create(name):
     """Create cluster"""
-    click.echo("Creating cluster $name")
-    print("Creating cluster ${name}")
+    click.echo("Creating cluster %s", name)
+    print("Creating cluster %s", name)
     #sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
     #sql = 'INSERT INTO cluster VALUES(2, "Picamera2", "Phillipsburg2", False, False, False);'
-    sql = 'INSERT INTO cluster VALUES(3, "Picamera3", "Phillipsburg3", False, False, False);'
+    #sql = 'INSERT INTO cluster VALUES(3, "Picamera3", "Phillipsburg3", False, False, False);'
+    sql = 'INSERT INTO cluster VALUES(4, "Picamera4", "Phillipsburg4", False, False, False);'
     res = sql_cur.execute(sql)
     print(res.fetchone())
     sql_con.commit()
