@@ -67,10 +67,11 @@ def list():
 @click.argument('name')
 def create(name):
     """Create cluster"""
-    click.echo("Creating cluster ${name}")
+    click.echo("Creating cluster $name")
     #sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
     sql = 'INSERT INTO cluster VALUES(2, "Picamera2", "Phillipsburg2", False, False, False);'
     res = sql_cur.execute(sql)
+    print(res.fetchone())
 
 @ehpc_cli.group()
 def login():
