@@ -56,14 +56,22 @@ def status():
 @cluster.command()
 def list():
     """List created clusters"""
-    click.echo('List created clusters')
+    click.echo('Listing created clusters')
+    #if cluster_exists():
+    if 5 > 2:
+        print('True')
+
+
+
+
 
 @cluster.command('create')
 @click.argument('name')
 def create(name):
     """Create cluster"""
-    click.echo('Create cluster')
-    sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
+    click.echo("Creating cluster ${name}")
+    #sql = 'INSERT INTO cluster VALUES(1, "Picamera", "Phillipsburg", False, False, False)'
+    sql = 'INSERT INTO cluster VALUES(2, "Picamera2", "Phillipsburg2", False, False, False)'
     sql_cur.execute(sql)
 
 @ehpc_cli.group()
