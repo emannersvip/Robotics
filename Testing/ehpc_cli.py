@@ -92,6 +92,10 @@ def create(name):
 def login():
     """All comannds related to logins"""
 
+@login.command()
+def status():
+    pass
+
 @ehpc_cli.group()
 def compute():
     """All comannds related to computes"""
