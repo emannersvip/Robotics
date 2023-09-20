@@ -61,7 +61,7 @@ def list():
     if 5 > 2:
         sql = 'SELECT name from cluster;'
         res = sql_cur.execute(sql)
-        print(res.fetchone())
+        print(res.fetchall())
 
 @cluster.command('create')
 @click.argument('name')
