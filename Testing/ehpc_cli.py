@@ -68,8 +68,8 @@ def list():
 def create(name):
     """Create cluster"""
     print("Creating cluster {}".format(name))
-    #sql = "INSERT INTO cluster VALUES(1, ${name}, 'Phillipsburg, False, False, False)"
-    sql = "INSERT INTO cluster (name,datacenter,login,scheduler,active) VALUES ({},'Phillipsburg', False, False, False)".format(name)
+    #sql = "INSERT INTO cluster VALUES(1, bob, 'Phillipsburg, False, False, False)"
+    sql = "INSERT INTO cluster (name,datacenter,login,scheduler,active) VALUES ('{}','Phillipsburg', False, False, False)".format(name)
     try:
         res = sql_cur.execute(sql)
         print(res.fetchone())
