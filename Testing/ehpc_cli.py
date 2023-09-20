@@ -58,6 +58,8 @@ def status():
         try:
             res = sql_cur.execute(sql)
             print(res.fetchall())
+        finally:
+            print('Ok')
 
 @cluster.command()
 def list():
