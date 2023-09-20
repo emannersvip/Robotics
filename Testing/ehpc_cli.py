@@ -52,6 +52,12 @@ def init_cluster_db():
 def status():
     """Show cluster status"""
     click.echo('Show cluster status')
+    #if cluster_exists():
+    if 5 > 2:
+        sql = 'SELECT active from cluster;'
+        try:
+            res = sql_cur.execute(sql)
+            print(res.fetchall())
 
 @cluster.command()
 def list():
