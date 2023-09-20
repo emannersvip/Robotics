@@ -40,8 +40,8 @@ def cluster():
         init_cluster_db()
     except:
         print('Unhandled generic exception.')
-    finally:
-        sql_con.commit()
+    #finally:
+    #    sql_con.commit()
 
 def init_cluster_db():
     # https://www.sqlitetutorial.net/sqlite-create-table/
@@ -74,13 +74,13 @@ def create(name):
     sql = 'INSERT INTO cluster VALUES(4, "Picamera4", "Phillipsburg4", False, False, False);'
     try:
         res = sql_cur.execute(sql)
+        print(res.fetchone())
+        sql_con.commit()
     except sqlite3.IntegrityError:
         print("Name {} most likely not unique. Check for uniqness and try create command again.".format(name))
     except:
         print('Unhandled generic exception.')
-    finally:
-        print(res.fetchone())
-        sql_con.commit()
+    #finally:
 
 @ehpc_cli.group()
 def login():
