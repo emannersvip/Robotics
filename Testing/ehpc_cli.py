@@ -108,6 +108,12 @@ def scheduler():
 @ehpc_cli.group()
 def status():
     """All comannds related to Global system status"""
+    # Check for active clusters.
+    if db_check_cluster_status():
+        print('Cluster bob is active')
+    else:
+        print('No active cluster')
+    return
 
 def db_check_cluster_status(sql_conn):
     # TODOD: Check that at least on cluster exists and determine it's status
