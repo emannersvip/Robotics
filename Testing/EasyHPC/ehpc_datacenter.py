@@ -6,4 +6,16 @@ class Datacenter:
         # A datacenter is the base and global entity where all eHPC code resides.
         self.status = 'inactive'
         self.name   = name
-        print("New datacenter %s created.", name)
+        print("New datacenter {} created.".format(name))
+    
+    def has_active_cluster(self):
+        """A"""
+        pass
+
+    def setup_cluster(self):
+        """B"""
+        pass
+
+    def print_ehpc_cli(self):
+        """C"""
+        pass
