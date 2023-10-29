@@ -20,3 +20,7 @@ $: Mandatory in every cluster
 Cluster: A cluster needs at least one login node and scheduler node to be active.
 LoginNode: A login node has to belong to at least one cluster.
 Compute Node: A compute node has to belong to at least one queue to be valid.
+
+eg.
+> ehpc cluster list
+> ehpc login list
