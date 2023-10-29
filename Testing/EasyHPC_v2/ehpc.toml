@@ -1,0 +1,12 @@
+# ehpc.toml
+
+[build-system]
+requires = ['argparse', 'shelve']
+
+[project]
+name = 'ehpc'
+version = '0.1a'
+descrption = 'Make HPC better'
+readme = 'README.md'
+authors = [{ name = 'Edson Manners', email = 'edson.manners@gmail.com' }]
+
