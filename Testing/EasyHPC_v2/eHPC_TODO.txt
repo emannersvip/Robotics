@@ -1,0 +1,3 @@
+# TODO:
+
+- create a function in each class that adsd the ecolor color to the str for the name.

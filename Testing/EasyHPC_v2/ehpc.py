@@ -22,6 +22,8 @@ if debug:
 else:
     dc =''
 
+mychoices = ['cluster', 'debug', 'login', 'status']
+
 # Do error checking on this later
 # TODO: check if file exists
 # 2) check for cluster, login, etc and load appropriately.
@@ -52,6 +54,8 @@ if __name__ == "__main__":
                         #choices=['cluster','compute','login','scheduler','status'],
                         nargs='+',
                         type=str)
+    #parser.add_argument('-d', '--debug', help='Adds helpful debug output')
+    #parser.add_argument('-v', '--version', help='Version 0.1a')
 
     args = parser.parse_args()
 
@@ -64,7 +68,7 @@ if __name__ == "__main__":
             print(f"{dc} No {eColors.CYAN}cluster{eColors.ENDC} exists. Initiaize EasyHPC now? (Y/n): ")
             einit = input()
 
-            if einit != 'n' or enit != 'N':
+            if einit != 'n' or einit != 'N':
                 print(f"{dc} Please provide {eColors.CYAN}CLUSTER{eColors.ENDC} name <{cluster_name}>: ")
                 # Use a sanitizing funtion later
                 cluster_name = input()
@@ -91,6 +95,17 @@ if __name__ == "__main__":
             else:
                 print(f"{eColors.CYAN}ehpc{eColors.ENDC}->{eColors.CYAN}cluster{eColors.ENDC}->{eColors.RED}{args.object1[1]}{eColors.ENDC} not yet supported!\n")
             pass
+        elif args.object1[0] == 'login':
+            # Check cluster status and/or datacenter status in the future
+            print(f"Checking Login Nodes.")
+            if sh.get('loginnode') != None:
+                if args.object1[1] == 'status':
+                    print(f"{eColors.CYAN}Login Node{eColors.ENDC} {eColors.GREEN}" + sh.get('loginnode').getName() + f"{eColors.ENDC} exists.")
+                elif args.object1[1] == 'list':
+                    print(f"{eColors.CYAN}Login Nodes:{eColors.ENDC}")
+                    print('  ' + sh.get('loginnode').getName() + f"{eColors.ENDC}")
+                else:
+                    print(f"{args.object1[1]} is not a supported option.")
         elif args.object1[0] == 'status':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking eHPC status.")
@@ -104,7 +119,7 @@ if __name__ == "__main__":
             finally:
                 print(f"{dc}Debug complete!\n")
         else:
-            print(f"{dc}If {args.object1} there must 2 arguments")
+            print(f"{dc}If {args.object1} Unkknown query. Valid entries are: {mychoices}")
     else:
         print(f"{dc}eHPC ran with no argument!!!")
 

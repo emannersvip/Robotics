@@ -36,7 +36,6 @@ class Cluster:
     def get_status(self):
         if self.status:
             print(f"{dc}Cluster {eColors.CYAN}{self.name}{eColors.CYAN} is {eColors.GREEN}ACTIVE{eColors.ENDC}")
-            print(f"{dc}Cluster {self.name} is {eColors.GREEN}ACTIVE{eColors.ENDC}")
         else:
             print(f"{dc}Cluster {self.name} is {eColors.RED}INACTIVE{eColors.ENDC}")
             print(f"{dc}To make cluster active create a new cluster with {eColors.CYAN}`ehpc cluster create <CLUSTER NAME>`{eColors.ENDC}\n")

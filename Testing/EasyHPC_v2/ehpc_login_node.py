@@ -1,3 +1,4 @@
+from ehpc_colors import eColors
 
 # DEBUG CODE
 debug = 1
@@ -26,3 +27,13 @@ class LoginNode:
     def __str__(self):
         login_print = f"LoginNode name: {self.name}, ip: {self.ip}, idm: {self.idm}, storage: {self.storage}, domain: {self.domain}"
         return login_print
+    def getName(self):
+        return self.name
+
+    def validateNode(self):
+        #TODO:
+        # Check DNS (For simple forward DNS lookups, it's better to use socket.getaddrinfo() or socket.gethostbyname().)
+        # Ping IP
+        # Login with SSH (First check for saved SSH Key for eHPC)
+        # Optional (doens't cause a failed test) Run sinfo and other scheduler equivalent
+        pass
