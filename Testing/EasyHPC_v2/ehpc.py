@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-from ehpc_cluster import Cluster
-from ehpc_login_node import LoginNode
-from ehpc_colors import eColors
-
-import sqlite3
+#import sqlite3
 import shelve
 # https://the-examples-book.com/programming-languages/python/argparse
 # https://docs.python.org/3/library/argparse.html
 import argparse
+
+from ehpc_cluster import Cluster
+#from ehpc_login_node import LoginNode
+from ehpc_colors import eColors
 
 # TODO:
 # - Do a check on arg[0]
@@ -103,7 +103,9 @@ if __name__ == "__main__":
                     print(f"{eColors.CYAN}Login Node{eColors.ENDC} {eColors.GREEN}" + sh.get('loginnode').getName() + f"{eColors.ENDC} exists.")
                 elif args.object1[1] == 'list':
                     print(f"{eColors.CYAN}Login Nodes:{eColors.ENDC}")
-                    print('  ' + sh.get('loginnode').getName() + f"{eColors.ENDC}")
+                    myLoginNode = sh.get('loginnode')
+                    print(f"  {eColors.GREEN}" + myLoginNode.getName() + f"{eColors.ENDC}")
+                    myLoginNode.validateNode()
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
         elif args.object1[0] == 'status':
