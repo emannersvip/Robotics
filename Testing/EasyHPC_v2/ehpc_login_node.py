@@ -60,7 +60,6 @@ class LoginNode:
         command = ['ssh', self.ip, 'uptime']
         if subprocess.run(args=command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0:
         #print(subprocess.check_call(['ssh', self.ip, 'command']))
-            print(fjf)
             print(f"  SSH:  TRUE")
             return 1
         else:
