@@ -38,7 +38,7 @@ class LoginNode:
         try:
             #addrInfo = socket.getaddrinfo(self.name, 22)
             addrInfo = socket.gethostbyname(self.name)
-            print(addrInfo)
+            print(f"  {addrInfo}")
             return 1
         except socket.gaierror as e:
             print(f"  --{dc}Failed DNS forward check: {e}")
