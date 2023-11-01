@@ -114,11 +114,15 @@ if __name__ == "__main__":
                             sh['addCompute'] = True
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
+            else:
+                print(f"No logins exist yet. Add them....")
         elif args.object1[0] == 'compute':
             print(f"Checking Compute Nodes.")
             if sh.get('computenode') != None:
                 if args.object1[1] == 'status':
                     print(f"{eColors.CYAN}Compute Node{eColors.ENDC} {eColors.GREEN}" + sh.get('computenode').getName() + f"{eColors.ENDC} exists.")
+            else:
+                print(f"No computes exist yet. Add them....")
         elif args.object1[0] == 'status':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking eHPC status.")
