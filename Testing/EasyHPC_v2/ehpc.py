@@ -29,14 +29,19 @@ mychoices = ['cluster', 'debug', 'login', 'status']
 # 2) check for cluster, login, etc and load appropriately.
 sh = shelve.open('ehpc.shelf')
 
+# In the future this is not needed as we can simplyt just use the .get() method instead
 try:
     myCluster = sh['cluster']
 except KeyError:
-    print(f"It's fine we just wont load anything here")
+    print(f"It's fine we just won't load a Cluster here")
 try:
     myLogin = sh['loginnode']
 except KeyError:
-    print(f"It's fine we just wont load anything here")
+    print(f"It's fine we just won't load a LoginNode here")
+try:
+    myCompute = sh['computenode']
+except KeyError:
+    print(f"It's fine we just won't load a ComputeNode here")
 
 
 def getClusterStatus():
@@ -105,10 +110,8 @@ if __name__ == "__main__":
                     print(f"{eColors.CYAN}Login Nodes:{eColors.ENDC}")
                     myLoginNode = sh.get('loginnode')
                     print(f"  Name: {eColors.GREEN}" + myLoginNode.getName() + f"{eColors.ENDC}")
-                    if myLoginNode.validateNode():
-                        if sh.get('computenode') == None:
-                            print(f"Add compute????")
-
+                    if myLoginNode.validateNode() and sh.get('computenode') == None:
+                            sh['addCompute'] = True
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
         elif args.object1[0] == 'status':
