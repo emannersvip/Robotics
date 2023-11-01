@@ -38,7 +38,7 @@ class LoginNode:
         try:
             #addrInfo = socket.getaddrinfo(self.name, 22)
             addrInfo = socket.gethostbyname(self.name)
-            print(f"  IP:{addrInfo}")
+            print(f"  IP:   {addrInfo}")
             return 1
         except socket.gaierror as e:
             print(f"  --{dc}Failed DNS forward check: {e}")
@@ -56,10 +56,16 @@ class LoginNode:
             print(f"  Ping: FALSE")
             return 0
     def checkSSH(self):
-        command = 'uptime'
-        #if subprocess.run('ssh', self.ip, 'command')
-        print(subprocess.check_call(['ssh', self.ip, 'command']))
-        return 0
+        #command = 'uptime'
+        command = ['ssh', self.ip, 'uptime']
+        if subprocess.run(args=command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0:
+        #print(subprocess.check_call(['ssh', self.ip, 'command']))
+            print(fjf)
+            print(f"  SSH:  TRUE")
+            return 1
+        else:
+            print(f"  SSH:  FALSE")
+            return 0
     def checkScheduler(self):
         command = 'sinfo'
         print(subprocess.check_call(['ssh', self.ip, 'command']))
