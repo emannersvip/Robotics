@@ -104,7 +104,7 @@ if __name__ == "__main__":
                 elif args.object1[1] == 'list':
                     print(f"{eColors.CYAN}Login Nodes:{eColors.ENDC}")
                     myLoginNode = sh.get('loginnode')
-                    print(f"  {eColors.GREEN}" + myLoginNode.getName() + f"{eColors.ENDC}")
+                    print(f"  Name:{eColors.GREEN}" + myLoginNode.getName() + f"{eColors.ENDC}")
                     myLoginNode.validateNode()
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
