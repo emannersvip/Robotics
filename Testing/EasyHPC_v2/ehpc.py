@@ -115,7 +115,10 @@ if __name__ == "__main__":
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
         elif args.object1[0] == 'compute':
-            pass
+            print(f"Checking Compute Nodes.")
+            if sh.get('computenode') != None:
+                if args.object1[1] == 'status':
+                    print(f"{eColors.CYAN}Compute Node{eColors.ENDC} {eColors.GREEN}" + sh.get('computenode').getName() + f"{eColors.ENDC} exists.")
         elif args.object1[0] == 'status':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking eHPC status.")
