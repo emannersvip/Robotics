@@ -114,6 +114,8 @@ if __name__ == "__main__":
                             sh['addCompute'] = True
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
+        elif args.object1[0] == 'compute':
+            pass
         elif args.object1[0] == 'status':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking eHPC status.")
