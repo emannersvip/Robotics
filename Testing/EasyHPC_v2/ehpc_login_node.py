@@ -70,6 +70,7 @@ class LoginNode:
         print(subprocess.check_call(['ssh', self.ip, 'command']))
 
     def validateNode(self):
+        retval=False
         #TODO:
         # Check DNS (For simple forward DNS lookups, it's better to use socket.getaddrinfo() or socket.gethostbyname().)
         self.checkDNS()
@@ -79,7 +80,9 @@ class LoginNode:
         if self.checkPing():
             if self.checkSSH():
                 # Optional (doesn't cause a failed test) Run sinfo and other scheduler equivalent
-                self.checkScheduler()
+                # need to write a global check to see if a scheduler exists in a cluster before this can be run
+                #self.checkScheduler()
+                retval = True
         else:
             print(f"  --Will try SSH check after ping is successful or disabled")
-        return
+        return retval

@@ -105,7 +105,10 @@ if __name__ == "__main__":
                     print(f"{eColors.CYAN}Login Nodes:{eColors.ENDC}")
                     myLoginNode = sh.get('loginnode')
                     print(f"  Name: {eColors.GREEN}" + myLoginNode.getName() + f"{eColors.ENDC}")
-                    myLoginNode.validateNode()
+                    if myLoginNode.validateNode():
+                        if sh.get('computenode') == None:
+                            print(f"Add compute????")
+
                 else:
                     print(f"{args.object1[1]} is not a supported option.")
         elif args.object1[0] == 'status':
