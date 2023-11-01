@@ -86,7 +86,7 @@ if __name__ == "__main__":
                 else:
                     # Complain
                     print(f"{dc}Bad cluster name")
-
+# ---------- CLUSTER --------------
         if args.object1[0] == 'cluster':
             print(args.object1)
             if args.object1[1] == 'status':
@@ -99,7 +99,7 @@ if __name__ == "__main__":
                 sh.sync()
             else:
                 print(f"{eColors.CYAN}ehpc{eColors.ENDC}->{eColors.CYAN}cluster{eColors.ENDC}->{eColors.RED}{args.object1[1]}{eColors.ENDC} not yet supported!\n")
-            pass
+# ---------- LOGIN --------------
         elif args.object1[0] == 'login':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking Login Nodes.")
@@ -116,6 +116,8 @@ if __name__ == "__main__":
                     print(f"{args.object1[1]} is not a supported option.")
             else:
                 print(f"No logins exist yet. Add them....")
+                print(f"{dc}To add a login node use: {eColors.CYAN}`ehpc login create <COMPUTE NODE>`{eColors.ENDC}\n")
+# ---------- COMPUTE --------------
         elif args.object1[0] == 'compute':
             print(f"Checking Compute Nodes.")
             if sh.get('computenode') != None:
@@ -123,9 +125,12 @@ if __name__ == "__main__":
                     print(f"{eColors.CYAN}Compute Node{eColors.ENDC} {eColors.GREEN}" + sh.get('computenode').getName() + f"{eColors.ENDC} exists.")
             else:
                 print(f"No computes exist yet. Add them....")
+                print(f"{dc}To add a compute node use: {eColors.CYAN}`ehpc compute create <COMPUTE NODE>`{eColors.ENDC}\n")
+# ---------- EHPC STATUS --------------
         elif args.object1[0] == 'status':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking eHPC status.")
+# ---------- EHPC DEBUG --------------
         elif args.object1[0] == 'debug':
             # Check cluster status and/or datacenter status in the future
             try:
