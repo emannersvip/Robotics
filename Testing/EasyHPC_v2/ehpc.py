@@ -7,7 +7,7 @@ import shelve
 import argparse
 
 from ehpc_cluster import Cluster
-#from ehpc_login_node import LoginNode
+from ehpc_compute_node import ComputeNode
 from ehpc_colors import eColors
 
 # TODO:
@@ -129,6 +129,13 @@ if __name__ == "__main__":
             if sh.get('computenode') != None:
                 if args.object1[1] == 'status':
                     print(f"{eColors.CYAN}Compute Node{eColors.ENDC} {eColors.GREEN}" + sh.get('computenode').getName() + f"{eColors.ENDC} exists.")
+                elif args.object1[1] == 'create':
+                    print(f"{dc} {eColors.CYAN}Compute{eColors.ENDC} node {eColors.CYAN}name{eColors.ENDC}, fqdn <compute01.ehpc.org>: ")
+                    # TODO: Check for fqdn in the future.
+                    cname = input()
+                    print(f"{dc} {eColors.CYAN}Compute{eColors.ENDC} node {eColors.CYAN}ip{eColors.ENDC} <192.168.200.1>: ")
+                    cip = input()
+                    myCompute = ComputeNode(cname, cip)
             else:
                 print(f"No computes exist yet. Add them....")
                 print(f"{dc}To add a compute node use: {eColors.CYAN}`ehpc compute create <COMPUTE NODE>`{eColors.ENDC}\n")
