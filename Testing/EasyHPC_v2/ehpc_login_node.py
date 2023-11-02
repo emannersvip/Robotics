@@ -32,6 +32,9 @@ class LoginNode:
     def __str__(self):
         login_print = f"LoginNode name: {self.name}, ip: {self.ip}, idm: {self.idm}, storage: {self.storage}, domain: {self.domain}"
         return login_print
+    def get_status(self):
+        if self.name and self.ip:
+            print(f"{dc}Login Node is ACTIVE")
     def getName(self):
         return self.name
     def checkDNS(self):
