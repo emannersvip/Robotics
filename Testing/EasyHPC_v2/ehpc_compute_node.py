@@ -1,4 +1,4 @@
-# eHPC_Login
+# eHPC_Compute
 
 import socket
 import subprocess
@@ -8,17 +8,15 @@ from ehpc_colors import eColors
 # DEBUG CODE
 debug = 1
 if debug:
-    dc = '002: '
+    dc = '003: '
 else:
     dc =''
 
-class LoginNode:
-    """EHPC class that defines Login Nodes"""
+class ComputeNode:
+    """EHPC class that defines Compute Nodes"""
     def __init__(self, name, ip):
         self.name    = name
         self.ip      = ip
-        self.idm     = 'local'  # Choose AD,LDAP,sssd, etc.
-        self.storage = 'local'
         # I expect this to be set at the cluster level in the future.
         # For now it'll be split from the fqdn
         self.domain  = 'ehpc.org' 
@@ -28,13 +26,13 @@ class LoginNode:
         self.domain = '.'.join(ename)
 
     def __repr__(self):
-        return "Login()"
+        return "Compute()"
     def __str__(self):
-        login_print = f"LoginNode name: {self.name}, ip: {self.ip}, idm: {self.idm}, storage: {self.storage}, domain: {self.domain}"
-        return login_print
+        compute_print = f"ComputeNode name: {self.name}, ip: {self.ip}, domain: {self.domain}"
+        return compute_print
     def get_status(self):
         if self.name and self.ip:
-            print(f"{dc}Login Node, {eColors.CYAN}{self.name}{eColors.ENDC}, is {eColors.GREEN}ACTIVE{eColors.ENDC}")
+            print(f"{dc}Compute Node, {eColors.CYAN}{self.name}{eColors.ENDC}, is {eColors.GREEN}ACTIVE{eColors.ENDC}")
 
     def getName(self):
         return self.name
