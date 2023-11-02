@@ -44,8 +44,13 @@ except KeyError:
     print(f"It's fine we just won't load a ComputeNode here")
 
 
-def getClusterStatus():
-    myCluster.get_status()
+def getStatus():
+    #myCluster.get_status()
+    #myLogin.get_status()
+    #myCompute.get_status()
+    sh.get('cluster').get_status()
+    sh.get('loginnode').get_status()
+    sh.get('computenode').get_status()
     return
 
 def createCluster(name):
@@ -90,7 +95,8 @@ if __name__ == "__main__":
         if args.object1[0] == 'cluster':
             print(args.object1)
             if args.object1[1] == 'status':
-                getClusterStatus()
+                # Switch this to get object status only.
+                getStatus()
             elif args.object1[1] == 'create' and args.object1[2]:
                 myLoginNode = createCluster(args.object1[2])
                 print(f"{dc}Login: {myLoginNode}")
@@ -130,6 +136,8 @@ if __name__ == "__main__":
         elif args.object1[0] == 'status':
             # Check cluster status and/or datacenter status in the future
             print(f"Checking eHPC status.")
+            getStatus()
+            # Should be a call to the getstatus method of every object
 # ---------- EHPC DEBUG --------------
         elif args.object1[0] == 'debug':
             # Check cluster status and/or datacenter status in the future

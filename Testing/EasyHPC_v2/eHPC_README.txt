@@ -24,3 +24,4 @@ Compute Node: A compute node has to belong to at least one queue to be valid.
 eg.
 > ehpc cluster list
 > ehpc login list
+> ehpc sync
