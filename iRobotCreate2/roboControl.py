@@ -39,11 +39,11 @@ if __name__ == "__main__":
                 bot.drive_direct(50,50)
                 time.sleep(2.0)
                 bot.drive_stop()
-            elif char == curses.KEY_UP:
-                screen.addstr(0, 0, 'up ')
-                bot.drive_direct(50,50)
-                time.sleep(2.0)
-                bot.drive_stop()
+            #elif char == curses.KEY_UP:
+            #    screen.addstr(0, 0, 'up ')
+            #    bot.drive_direct(50,50)
+            #    time.sleep(2.0)
+            #    bot.drive_stop()
             elif char == curses.KEY_RIGHT:
                 screen.addstr(0, 0, 'right ')
                 bot.drive_direct(-25,25)
