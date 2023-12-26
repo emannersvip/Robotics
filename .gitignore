@@ -5,6 +5,7 @@
 /iRobotCreate2/sensor.log
 /Production/alert_log.log
 Testing/ehpc.db
+Testing/__pycache__/
 Testing/__pycache__/ehpc_cluster.cpython-310.pyc
 Testing/EasyHPC_v2/__pycache__
 ehpc.db
