@@ -29,7 +29,7 @@ PAGE = """\
 <h1>EE PC2 CameraX</h1>
 <img src="stream.mjpg" width="1920" height="1080" />
 <!--<img src="stream.mjpg" width="640" height="480" />-->
-<img src="stream.mjpg" />
+<img src="direction-arrow.png" />
 </body>
 </html>
 """
@@ -59,6 +59,13 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
+        elif self.path =='/direction-arrow.png':
+            self.send_response(200)
+            self.send_header('Content-type','image/png')
+            self.end_headers()
+            f = open('direction-arrow.png', 'rb')
+            self.wfile.write(f.read())
+            f.close()
         elif self.path == '/stream.mjpg':
             self.send_response(200)
             self.send_header('Age', 0)
