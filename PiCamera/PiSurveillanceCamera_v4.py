@@ -27,12 +27,8 @@ PAGE = """\
 </head>
 <body>
 <h1>EE PC2 CameraX</h1>
-<img src="stream.mjpg" width="1920" height="1080" />
+<img src="stream.mjpg" width="1920" height="1080" style="width:90%;height:100%;" />
 <!--<img src="stream.mjpg" width="640" height="480" />-->
-<img src="direction-arrow-left.png" />
-<img src="direction-arrow-right.png" />
-<img src="direction-arrow-up.png" />
-<img src="direction-arrow-down.png" />
 </body>
 </html>
 """

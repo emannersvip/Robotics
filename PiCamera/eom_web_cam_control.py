@@ -5,6 +5,9 @@ from flask import Flask, render_template
 from servo import Servo
 #from time import sleep
 
+# TODO:
+# - Add check for joystick cam control
+
 pan_angle = 0
 tilt_angle = 0
 pan_angle_max = 90
