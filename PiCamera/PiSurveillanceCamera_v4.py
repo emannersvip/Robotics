@@ -29,7 +29,10 @@ PAGE = """\
 <h1>EE PC2 CameraX</h1>
 <img src="stream.mjpg" width="1920" height="1080" />
 <!--<img src="stream.mjpg" width="640" height="480" />-->
-<img src="direction-arrow.png" />
+<img src="direction-arrow-left.png" />
+<img src="direction-arrow-right.png" />
+<img src="direction-arrow-up.png" />
+<img src="direction-arrow-down.png" />
 </body>
 </html>
 """
@@ -59,11 +62,32 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
-        elif self.path =='/direction-arrow.png':
+        elif self.path =='/direction-arrow-left.png':
             self.send_response(200)
             self.send_header('Content-type','image/png')
             self.end_headers()
-            f = open('direction-arrow.png', 'rb')
+            f = open('direction-arrow-left.png', 'rb')
+            self.wfile.write(f.read())
+            f.close()
+        elif self.path =='/direction-arrow-right.png':
+            self.send_response(200)
+            self.send_header('Content-type','image/png')
+            self.end_headers()
+            f = open('direction-arrow-right.png', 'rb')
+            self.wfile.write(f.read())
+            f.close()
+        elif self.path =='/direction-arrow-up.png':
+            self.send_response(200)
+            self.send_header('Content-type','image/png')
+            self.end_headers()
+            f = open('direction-arrow-up.png', 'rb')
+            self.wfile.write(f.read())
+            f.close()
+        elif self.path =='/direction-arrow-down.png':
+            self.send_response(200)
+            self.send_header('Content-type','image/png')
+            self.end_headers()
+            f = open('direction-arrow-down.png', 'rb')
             self.wfile.write(f.read())
             f.close()
         elif self.path == '/stream.mjpg':
