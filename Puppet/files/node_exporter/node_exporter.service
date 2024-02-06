@@ -4,27 +4,28 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=node-exp
-Group=node-exp
-ExecStart=/usr/local/bin/node_exporter \
-    '--collector.systemd' \
-    '--collector.textfile' \
-    '--collector.textfile.directory=/var/lib/node_exporter' \
-    '--web.listen-address=0.0.0.0:9100' \
-    '--web.telemetry-path=/metrics'
+#User=node-exp
+#Group=node-exp
+ExecStart=/usr/local/bin/node_exporter
+#ExecStart=/usr/local/bin/node_exporter \
+#    '--collector.systemd' \
+#    '--collector.textfile' \
+#    '--collector.textfile.directory=/var/lib/node_exporter' \
+#    '--web.listen-address=0.0.0.0:9100' \
+#    '--web.telemetry-path=/metrics'
 
-SyslogIdentifier=node_exporter
+#SyslogIdentifier=node_exporter
 Restart=always
-RestartSec=1
-StartLimitInterval=0
+#RestartSec=1
+#StartLimitInterval=0
 
-ProtectHome=yes
-NoNewPrivileges=yes
+#ProtectHome=yes
+#NoNewPrivileges=yes
 
-ProtectSystem=strict
-ProtectControlGroups=true
-ProtectKernelModules=true
-ProtectKernelTunables=yes
+#ProtectSystem=strict
+#ProtectControlGroups=true
+#ProtectKernelModules=true
+#ProtectKernelTunables=yes
 
 [Install]
 WantedBy=multi-user.target

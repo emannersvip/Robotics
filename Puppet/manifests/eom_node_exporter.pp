@@ -11,20 +11,29 @@ file { 'node_exporter_service':
   path		=> '/etc/systemd/system/node_exporter.service',
   owner         => root,
   group         => root,
-  source        => 'file:///profile/node_exporter/node_exporter.service',
-  require	=> Exec['node_exporter_binary'],
+  mode		=> '0644',
+  source        => '/home/emanners//Code/Robotics/Puppet/files/node_exporter/node_exporter.service',
+  require	=> File['node_exporter_binary'],
 }
-exec { 'node_exporter_binary':
-  path		=> '/usr/bin',
-  command       => "wget -c ${url} -O - | tar zx",
-  creates	=> '/home/emanners/Code/Robotics/Puppet/manifests/node_exporter-1.7.0.linux-amd64',
+file { 'node_exporter_binary':
+  ensure        => present,
+  path		=> '/usr/local/bin/node_exporter',
+  owner         => root,
+  group         => root,
+  mode		=> '0755',
+  source        => 'https://github.com/emannersvip/Robotics/blob/master/Puppet/files/node_exporter/node_exporter',
 }
+#exec { 'node_exporter_binary':
+#  path		=> '/usr/bin',
+#  command       => "wget -c ${url} -O - | tar zx",
+#  creates	=> '/home/emanners/Code/Robotics/Puppet/manifests/node_exporter-1.7.0.linux-amd64',
+#}
 service { 'node_exporter':
   ensure	=> running,
   enable	=> true,
   hasrestart	=> true,
   hasstatus	=> true,
-  require	=> [Exec['node_exporter_binary'], File['node_exporter_service']],
+  require	=> [File['node_exporter_binary'], File['node_exporter_service']],
 }
 
 
