@@ -1,28 +1,30 @@
-# Build New Ubuntu host 2021
-# Change: Update for 2024
 #
-$user    = 'emanners'
-$homedir = "/home/$user"
-$codedir = "$homedir/Code"
 
-file { "$homedir/Code":         ensure => directory, owner => $user, group => $user }
+$node_exporter = 'node_exporter-1.7.0.linux-amd64.tar.gz'
+$url = "https://github.com/prometheus/node_exporter/releases/download/v1.7.0/${node_exporter}"
 
-#--
-package { 'htop':  ensure => installed, }
-package { 'iotop':  ensure => installed, }
-package { 'mlocate':  ensure => installed, }
-package { 'screen':  ensure => installed, }
-# https://forum.level1techs.com/t/how-to-reformat-520-byte-drives-to-512-bytes-usually/133021
-# package { 'sg3-utils': ensure => installed, }
-package { 'smartmontools':  ensure => installed, }
+#package { 'htop':  ensure => installed, }
+#package { 'vim':  ensure => installed, }
 
-#--Miscellaneous files
-#
-#--Vim
-package { 'vim':  ensure => installed, }
-file { "$homedir/.vimrc":
+file { 'node_exporter_service':
   ensure        => present,
-  owner         => $user,
-  group         => $user,
-  content       => "colorscheme darkblue\nsyntax on",
+  path		=> '/etc/systemd/system/node_exporter.service',
+  owner         => root,
+  group         => root,
+  source        => 'file:///profile/node_exporter/node_exporter.service',
+  require	=> Exec['node_exporter_binary'],
 }
+exec { 'node_exporter_binary':
+  path		=> '/usr/bin',
+  command       => "wget -c ${url} -O - | tar zx",
+  creates	=> '/home/emanners/Code/Robotics/Puppet/manifests/node_exporter-1.7.0.linux-amd64',
+}
+service { 'node_exporter':
+  ensure	=> running,
+  enable	=> true,
+  hasrestart	=> true,
+  hasstatus	=> true,
+  require	=> [Exec['node_exporter_binary'], File['node_exporter_service']],
+}
+
+
