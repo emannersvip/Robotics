@@ -52,7 +52,7 @@ fi
 if test -f "${SSH_DIR}/id_ecdsa"; then
 	echo '--It looks like SSH keys are already in place' 
 	if test -f "${SSH_DIR}/config"; then
-		echo '--SSH config is also in place. Good!' 
+		echo '----SSH config is also in place. Good!' 
 	else
 		cat << EOF > ${SSH_DIR}/config
 Host github.com
