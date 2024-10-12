@@ -70,6 +70,6 @@ UNNEEDED_SVCS='avahi-daemon cups bluetooth'
 systemctl stop ${UNNEEDED_SVCS}
 systemctl disable ${UNNEEDED_SVCS}
 
-echo '\n\n'
+echo "\n\n"
 
 
