@@ -49,24 +49,27 @@ else
 	fi
 fi
 
-if test -f "${SSH_DIR}/id_ecdsa"; then
-	echo '--It looks like SSH keys are already in place' 
-	if test -f "${SSH_DIR}/config"; then
-		echo '----SSH config is also in place. Good!' 
-	else
-		cat << EOF > ${SSH_DIR}/config
-Host github.com
-AddKeysToAgent yes
-IdentityFile ~/.ssh/id_ecdsa
-EOF
-	fi
-else
-	echo '--It looks like SSH keys are *NOT* setup. Copy SSH keys at first convenience'
-fi
+# SSH Keys in order to make GitHUB changes?
+#if test -f "${SSH_DIR}/id_ecdsa"; then
+#	echo '--It looks like SSH keys are already in place' 
+#	if test -f "${SSH_DIR}/config"; then
+#		echo '----SSH config is also in place. Good!' 
+#	else
+#		cat << EOF > ${SSH_DIR}/config
+#Host github.com
+#AddKeysToAgent yes
+#IdentityFile ~/.ssh/id_ecdsa
+#EOF
+#	fi
+#else
+#	echo '--It looks like SSH keys are *NOT* setup. Copy SSH keys at first convenience'
+#fi
 
-
+# Stop uneeded services
 UNNEEDED_SVCS='avahi-daemon cups bluetooth'
 systemctl stop ${UNNEEDED_SVCS}
 systemctl disable ${UNNEEDED_SVCS}
+
+echo '\n\n'
 
 
