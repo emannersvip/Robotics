@@ -32,7 +32,7 @@ USEFUL_APPS='vim git screen'
 echo "--Adding Pi useful apps... ${USEFUL_APPS}"
 apt -y install ${USEFUL_APPS}
 
-echo '\n--Adding Pi camera software...'
+echo "\n--Adding Pi camera software..."
 # https://github.com/raspberrypi/picamera2#installation
 apt install -y python3-picamera2 --no-install-recommends
  
