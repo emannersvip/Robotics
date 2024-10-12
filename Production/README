@@ -1,0 +1,3 @@
+Here how to run pi-bootstrap.sh
+
+wget https://github.com/emannersvip/Robotics/pi-bootstrap.sh | bash
