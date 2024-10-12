@@ -8,13 +8,13 @@ SSH_AUTH=$SSH_DIR/authorized_keys
 # TODO:
 # -- Check if run as Root
 
-echo "--Bootstrapping ${SUDO_USER:-${HOSTNAME}}..."
+echo "\n--Bootstrapping ${SUDO_USER:-${HOSTNAME}}..."
 
-echo "--Checking for SSH keys in $SSH_AUTH"
+echo "\n--Checking for SSH keys in $SSH_AUTH"
 if test -f "$SSH_AUTH"; then
-	echo '--No need to setup SSH keys'
+	echo '----No need to setup SSH keys'
 else
-	echo '--Setting up SSH keys...'
+	echo '----Setting up SSH keys...'
 	mkdir $SSH_DIR
 	chmod 700 $SSH_DIR
 	touch $SSH_AUTH
@@ -23,7 +23,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXP7oE/7jhnxcQXNVYzTC0ZbtHV2m9sMin7rSel+by
 EOF
 fi
 
-echo '--Updating apt cache and running apt upgrade'
+echo '\n--Updating apt cache and running apt upgrade'
 apt update 2>/dev/null 1>/dev/null
 #apt -y upgrade 2>/dev/null 1>/dev/null
 apt -y upgrade 2>/dev/null 1>/dev/null
@@ -38,7 +38,7 @@ apt install -y python3-picamera2 --no-install-recommends
  
 echo "\n--Initialize GIT environment"
 if test -d "${REGULAR_USER_HOME}/Code"; then
-	echo "--No need to setup ${REGULAR_USER_HOME}, it already exists"
+	echo "----No need to setup ${REGULAR_USER_HOME}, it already exists"
 else
 	echo "--Creating Code directory: ${REGULAR_USER_HOME}/Code"
 	sudo --user=${REGULAR_USER} mkdir ${REGULAR_USER_HOME}/Code
@@ -47,7 +47,6 @@ else
 		echo '--Git environment already setup'
 	else
 		sudo --user=${REGULAR_USER} git clone https://github.com/emannersvip/Robotics.git 
-	fi
 fi
 
 if test -f "${SSH_DIR}/id_ecdsa"; then
