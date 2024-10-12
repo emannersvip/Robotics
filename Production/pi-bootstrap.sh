@@ -5,6 +5,9 @@ REGULAR_USER_HOME=/home/${SUDO_USER:-${USER}}
 SSH_DIR=/home/${REGULAR_USER}/.ssh
 SSH_AUTH=$SSH_DIR/authorized_keys
 
+# TODO:
+# -- Check if run as Root
+
 echo "--Bootstrapping $HOSTNAME..."
 
 echo "--Checking for SSH keys in $SSH_AUTH"
@@ -20,12 +23,14 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXP7oE/7jhnxcQXNVYzTC0ZbtHV2m9sMin7rSel+by
 EOF
 fi
 
-apt update
-echo '--Update apt cache. Pleae run "sudo apt upgrade"'
-apt -y upgrade
+echo '--Updating apt cache and running apt upgrade'
+apt update 2>/dev/null 1>/dev/null
+#apt -y upgrade 2>/dev/null 1>/dev/null
+apt -y upgrade 2>/dev/null 1>/dev/null
 
-echo '--Adding Pi camera software...'
-apt -y install vim git screen
+USEFUL_APPS='vim git screen'
+echo '--Adding Pi useful apps... $USEFUL_APPS'
+apt -y install $USEFUL_APPS
 
 echo '--Adding Pi camera software...'
 # https://github.com/raspberrypi/picamera2#installation
