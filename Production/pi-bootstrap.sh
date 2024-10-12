@@ -8,7 +8,7 @@ SSH_AUTH=$SSH_DIR/authorized_keys
 # TODO:
 # -- Check if run as Root
 
-echo "--Bootstrapping $HOSTNAME..."
+echo "--Bootstrapping ${SUDO_USER:-${HOSTNAME}}..."
 
 echo "--Checking for SSH keys in $SSH_AUTH"
 if test -f "$SSH_AUTH"; then
