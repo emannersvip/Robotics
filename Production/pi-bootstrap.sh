@@ -25,11 +25,10 @@ fi
 
 echo '\n--Updating apt cache and running apt upgrade'
 apt update 2>/dev/null 1>/dev/null
-#apt -y upgrade 2>/dev/null 1>/dev/null
 apt -y upgrade 2>/dev/null 1>/dev/null
 
 USEFUL_APPS='vim git screen'
-echo "--Adding Pi useful apps... ${USEFUL_APPS}"
+echo "\n--Adding Pi useful apps... ${USEFUL_APPS}"
 apt -y install ${USEFUL_APPS}
 
 echo "\n--Adding Pi camera software..."
@@ -57,8 +56,8 @@ if test -f "${SSH_DIR}/id_ecdsa"; then
 	else
 		cat << EOF > ${SSH_DIR}/config
 Host github.com
-        AddKeysToAgent yes
-        IdentityFile ~/.ssh/id_ecdsa
+AddKeysToAgent yes
+IdentityFile ~/.ssh/id_ecdsa
 EOF
 	fi
 else
