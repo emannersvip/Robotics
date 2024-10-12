@@ -47,6 +47,7 @@ else
 		echo '--Git environment already setup'
 	else
 		sudo --user=${REGULAR_USER} git clone https://github.com/emannersvip/Robotics.git 
+	fi
 fi
 
 if test -f "${SSH_DIR}/id_ecdsa"; then
@@ -59,8 +60,7 @@ Host github.com
         AddKeysToAgent yes
         IdentityFile ~/.ssh/id_ecdsa
 EOF
-
-
+	fi
 else
 	echo '--It looks like SSH keys are *NOT* setup. Copy SSH keys at first convenience'
 fi
