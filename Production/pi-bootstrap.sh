@@ -29,15 +29,15 @@ apt update 2>/dev/null 1>/dev/null
 apt -y upgrade 2>/dev/null 1>/dev/null
 
 USEFUL_APPS='vim git screen'
-echo '--Adding Pi useful apps... $USEFUL_APPS'
-apt -y install $USEFUL_APPS
+echo "--Adding Pi useful apps... ${USEFUL_APPS}"
+apt -y install ${USEFUL_APPS}
 
-echo '--Adding Pi camera software...'
+echo '\n--Adding Pi camera software...'
 # https://github.com/raspberrypi/picamera2#installation
 apt install -y python3-picamera2 --no-install-recommends
  
-echo '--Initialize GIT environment'
-if test -f "${REGULAR_USER_HOME}/Code"; then
+echo "\n--Initialize GIT environment"
+if test -d "${REGULAR_USER_HOME}/Code"; then
 	echo "--No need to setup ${REGULAR_USER_HOME}, it already exists"
 else
 	echo "--Creating Code directory: ${REGULAR_USER_HOME}/Code"
