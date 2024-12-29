@@ -18,3 +18,4 @@ camera.start_preview()
 #Camera warm-up time
 sleep(2)
 camera.capture('foo.jpg')
+
