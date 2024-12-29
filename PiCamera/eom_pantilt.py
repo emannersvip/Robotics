@@ -4,14 +4,24 @@
 # https://github.com/pimoroni/pantilt-hat/blob/master/examples/timeout.py
 # https://core-electronics.com.au/guides/pan-tilt-hat-raspberry-pi/
 
+# raspi-config i2c HAS to be anabled.
+## There is currently no easy way of checking this in Python.
+
 import curses
 import time
 
-import pantilthat
+try:
+    import pantilthat
+    print('pantilthat already installed')
+except ImportError as err:
+    print('Error>>', err)
+
+# https://stackoverflow.com/questions/30483246/how-can-i-check-if-a-module-has-been-imported
 
 # TODO:
 # - Make IPs be dynamic.
 # - Add a notification for hitting the limits of pan and tilt.
+# - Double check the starting position of pantilt module
 
 pantilthat.idle_timeout(0.5)
 
@@ -32,6 +42,11 @@ try:
 except PermissionError as e:
     curses.nocbreak(); screen.keypad(0); curses.echo(); curses.endwin()
     print('Can\'t load the pantilt module. Please check the HW.')
+    print(e)
+    exit()
+except FileNotFoundError as e:
+    curses.nocbreak(); screen.keypad(0); curses.echo(); curses.endwin()
+    print('Can\'t load the pantilt module. Please check the SW or i2c setting in raspi-config.')
     print(e)
     exit()
 
