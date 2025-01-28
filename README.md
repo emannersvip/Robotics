@@ -7,6 +7,6 @@ For new install on Raspberry Pi:
 
 `sudo apt -y install python3-pip python3-evdev`
 
-`emanners@pi-zerow-roomba-0:~/Robotics/iRobotCreate2 $ python3 -m venv ./python3`
+`~emanners/Robotics/iRobotCreate2$ python3 -m venv ./python3`
 
-`~emanners/Robotics/iRobotCreate2/python3/bin/pip install evdev`
+`~emanners/Robotics/iRobotCreate2/python3/bin/pip install pycreate2`
