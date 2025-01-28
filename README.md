@@ -9,4 +9,4 @@ For new install on Raspberry Pi:
 
 `emanners@pi-zerow-roomba-0:~/Robotics/iRobotCreate2 $ python3 -m venv ./python3`
 
-`python3 -m pip install evdev`
+`~emanners/Robotics/iRobotCreate2/python3/bin/pip install evdev`
