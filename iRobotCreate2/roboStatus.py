@@ -12,7 +12,7 @@ import pycreate2
 
 # Create log file
 logfile='/home/emanners/Code/Robotics/iRobotCreate2/sensor.log'
-if not os.path.exists(logfile'):
+if not os.path.exists(logfile):
   os.mknod(logfile)
 
 # Setup logging of iRobot Create2 data
