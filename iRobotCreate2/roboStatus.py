@@ -11,10 +11,10 @@ import os
 import pycreate2
 
 # Create log file
-if not os.path.exists('/home/emanners/Code/Robotics/iRobotCreate2/sensor.log'):
-  os.mknod('/home/emanners/Code/Robotics/iRobotCreate2/sensor.log')
+logfile='/home/emanners/Code/Robotics/iRobotCreate2/sensor.log'
+if not os.path.exists(logfile'):
+  os.mknod(logfile)
 
-logfile = '/home/emanners/Code/iRobotCreate2/sensor.log'
 # Setup logging of iRobot Create2 data
 logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
 # Print timestamp everytime we start the progam
