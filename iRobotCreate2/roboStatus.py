@@ -6,6 +6,7 @@
 import curses
 # https://docs.python.org/3/howto/logging.html
 import logging
+import os
 
 import pycreate2
 
