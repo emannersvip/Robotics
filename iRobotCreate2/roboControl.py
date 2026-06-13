@@ -28,11 +28,17 @@ if __name__ == "__main__":
     # You are responsible for handling issues, no protection/safety in
     # this mode ... be careful
     bot.full()
+    sensor = bot.get_sensors()
+    print(f"{sensor.light_bumper_left:4}")
+    print(f"Wall = {sensor.wall:1}")
+    print("Foo")
 
     try:
         while True:
             char = screen.getch()
             if char == ord('q'):
+                sensors = bot.get_sensors()
+                print(sensors)
                 break
             elif char == curses.KEY_UP:
                 screen.addstr(0, 0, 'up ')
@@ -66,6 +72,8 @@ if __name__ == "__main__":
         time.sleep(2)
         bot.stop()
     
+    sensors = bot.get_sensors()
+    print(sensors)
     print('Bot drive stop')
     bot.drive_stop()
     time.sleep(0.1)
