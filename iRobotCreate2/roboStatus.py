@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # iRobotCreate 2 sensors
 # https://pypi.org/project/pycreate2/
 # https://github.com/MomsFriendlyRobotCompany/pycreate2/tree/master/docs/Markdown
