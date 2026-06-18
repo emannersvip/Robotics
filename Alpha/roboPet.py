@@ -34,11 +34,40 @@ logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(
 logging.info("\n")
 logging.info('\n============== RoboPet Logging Started ==============')
 
+# Initialize curses environment
 screen = curses.initscr()
 curses.noecho()
 curses.cbreak()
 screen.keypad(True)
 logging.info('Curses: curses initialized...')
+
+def get_roomba_data(bot):
+    try:
+        sensors = bot.get_sensors()
+    except Exception as e:
+        logging.info('Exception: %s', e)
+        logging.info('Exception: Be sure to cleanly stop bot')
+        curses.nocbreak(); screen.keypad(0); curses.echo()
+        curses.endwin()
+        time.sleep(2)
+        bot.stop()
+        time.sleep(2.0)
+        exit()
+    else:
+        logging.info('Else: No Exceptions moving on.')
+    finally:
+        logging.info('Finally')
+    
+    # Print sensor data
+    sensors.wall == sensors[1]
+    sensors.charger_state == sensors[13]
+    sensors.charger_available == sensors[24]
+    # Print sensor data & Vacuum Telemetry data
+    screen.addstr(20, 0, str(sensors.wall))
+    screen.addstr(21, 0, str(sensors.charger_state))
+    screen.addstr(22, 0, str(sensors.charger_available))
+    return
+
 
 if __name__ == "__main__":
     # Create a Create2 bots settings
@@ -79,9 +108,6 @@ if __name__ == "__main__":
 
     logging.info('CV: Cleanly releasing capture device')
     cap.release()
-    #img = cv2.imread('/home/emanners/Pictures/Screenshots/Screenshot From 2026-02-22 07-40-18.png')
-    #cv2.imshow('Output', img)
-    #cv2.waitKey(0)
     logging.info('CV: CV2 cleanup and window destruction')
     cv2.destroyAllWindows()
 
@@ -99,14 +125,11 @@ if __name__ == "__main__":
 
     # Start the Create 2
     bot.start()
-    # Put the Create2 into 'safe' mode so we can drive it
-    # This will still provide some protection
-    bot.safe()
+    bot.safe()      # Put the Create2 into 'safe' mode so we can drive it. This will still provide some protection
     time.sleep(0.5)
-    # You are responsible for handling issues, no protection/safety in
-    # this mode ... be careful
-    bot.full()
+    bot.full()      # You are responsible for handling issues, no protection/safety in this mode ... be careful
 
+    #get_roomba_data()
     try:
         sensors = bot.get_sensors()
     except Exception as e:
@@ -127,35 +150,41 @@ if __name__ == "__main__":
     sensors.wall == sensors[1]
     sensors.charger_state == sensors[13]
     sensors.charger_available == sensors[24]
-    # Print sensor data
+    # Print sensor data & Vacuum Telemetry data
     screen.addstr(20, 0, str(sensors.wall))
     screen.addstr(21, 0, str(sensors.charger_state))
     screen.addstr(22, 0, str(sensors.charger_available))
 
+    # Control the bot with keyboard input
     try:
         while True:
             char = screen.getch()
             if char == ord('q'):
                 screen.addstr(30, 0, '**Quitting...**')
+                logging.info('PyCreate - Input: Quitting')
                 time.sleep(1.0)
                 break
             elif char == curses.KEY_UP:
                 screen.addstr(5, 0, 'up ')
+                logging.info('PyCreate - Input: Up')
                 bot.drive_direct(50,50)
                 time.sleep(2.0)
                 bot.drive_stop()
             elif char == curses.KEY_RIGHT:
                 screen.addstr(5, 0, 'right ')
+                logging.info('PyCreate - Input: Right')
                 bot.drive_direct(-25,25)
                 time.sleep(2.0)
                 bot.drive_stop()
             elif char == curses.KEY_DOWN:
                 screen.addstr(5, 0, 'down ')
+                logging.info('PyCreate - Input: Down')
                 bot.drive_direct(-50,-50)
                 time.sleep(2.0)
                 bot.drive_stop()
             elif char == curses.KEY_LEFT:
                 screen.addstr(5, 0, 'left ')
+                logging.info('PyCreate - Input: Left')
                 bot.drive_direct(25,-25)
                 time.sleep(2.0)
                 bot.drive_stop()
