@@ -1,3 +1,5 @@
+/Alpha/*.png
+/Alpha/sensor.log
 /Boing
 /PiCamera/robot.py
 /PiCamera/__pycache__
