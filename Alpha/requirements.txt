@@ -1,0 +1,9 @@
+Package       Version
+------------- ---------
+colorama      0.4.6
+numpy         2.4.6
+opencv-python 4.13.0.92
+pip           25.1.1
+pycreate2     0.8.0
+pyserial      3.5
+simplejson    4.1.1

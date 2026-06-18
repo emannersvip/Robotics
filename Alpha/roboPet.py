@@ -3,6 +3,10 @@
 # Send to dock:
 # -- https://github.com/iRobotSTEM/CreatePython/blob/main/Create2_TetheredDrive.py
 
+# RaspBerry Pi Package dependencies:
+# `sudo apt-get -y install libopenblas-dev libwebpdemux2 libwebpmux3 libopenjp2-7 libswscale-dev libavcodec-dev libavformat-dev libatlas-base-dev`
+# `sudo apt install libavformat59 libavcodec-dev libgtk-3-dev`
+
 import curses
 import cv2
 import logging
@@ -19,8 +23,13 @@ os.environ['QT_QPA_PLATFORM']='xcb'
 print(cv2.__version__)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
+# Check for existence of logfile and create if it doesn't exist
 logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
-#logfile='/home/emanners/Code/Robotics/iRobotCreate2/sensor.log'
+
+if not os.path.exists(logfile):
+    with open(logfile, 'w') as f:
+        f.write('================ RoboPet New LogFile ====================\n')
+        f.write('==================\n')
 logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
 logging.info("\n")
 logging.info('\n============== RoboPet Logging Started ==============')
