@@ -124,7 +124,7 @@ if __name__ == "__main__":
     logging.info('CV: CV2 cleanup and window destruction')
     cv2.destroyAllWindows()
 
-    # Create a Create 2
+    # Create and Initialize Roomba Create2
     try:
         bot = pycreate2.Create2(port=port, baud=baud['default'])
     except Exception as e:
@@ -206,10 +206,14 @@ if __name__ == "__main__":
         # Shut down cleanly
         curses.nocbreak(); screen.keypad(0); curses.echo()
         curses.endwin()
-        time.sleep(2)
+        time.sleep(1)
         bot.stop()
     
+    # Cleanup and shutdown the bot and curses environment
+    logging.info('Exit: Shutting down bot and curses environment')
     print('Bot drive stop')
+    curses.nocbreak(); screen.keypad(0); curses.echo()
+    curses.endwin()
     bot.drive_stop()
     time.sleep(0.1)
     print('Bot close')
