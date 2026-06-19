@@ -104,9 +104,9 @@ def get_roomba_data(bot):
 def seek_roomba_dock(bot):
     logging.info('PyCreate: Seeking Dock')
     #bot.seek_dock()
-    bot.SCI.write(pycreate2.opcodes.SEEK_DOCK)  # Direct opcode call
+    bot.SCI.write(pycreate2.OI.OPCODES.SEEK_DOCK)  # Direct opcode call
     time.sleep(5.0)
-    logging.info('PyCreate: Seek Dock Complete')
+    logging.info('PyCreate: ✅ Seek Dock Complete! 🏠')
     return
 
 if __name__ == "__main__":
@@ -166,7 +166,9 @@ if __name__ == "__main__":
 
     # Start the Create 2
     bot.start()
+    logging.info('PyCreate: ✓ Started (Pasive Mode)')
     bot.safe()      # Put the Create2 into 'safe' mode so we can drive it. This will still provide some protection
+    logging.info('PyCreate: ✓ Safe Mode (Recommended for control)')
     time.sleep(0.5)
     bot.full()      # You are responsible for handling issues, no protection/safety in this mode ... be careful
 
