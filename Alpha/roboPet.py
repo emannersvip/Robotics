@@ -7,6 +7,7 @@
 # `sudo apt-get -y install libopenblas-dev libwebpdemux2 libwebpmux3 libopenjp2-7 libswscale-dev libavcodec-dev libavformat-dev libatlas-base-dev`
 # `sudo apt install libavformat59 libavcodec-dev libgtk-3-dev`
 
+import argparse
 import curses
 import cv2
 import logging
@@ -16,30 +17,42 @@ import time
 
 import pycreate2
 
-# Set environment variables
+# Setup global and  environment variables
+logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
 os.environ['QT_QPA_PLATFORM']='xcb'
 
-# Print CV2 version and load a cascade classifier for object detection
-print(cv2.__version__)
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+# Setup argparse for command line arguments
+parser = argparse.ArgumentParser(description='RoboPet - A robotic pet project using iRobot Create 2 and OpenCV for computer vision.')
+parser.add_argument('--port', type=str, default='/dev/ttyUSB0', help='Serial port for iRobot Create 2 (default: /dev/ttyUSB0)')
+parser.add_argument('--baud', type=int, default=115200, help='Baud rate for serial communication (default: 115200)')
+parser.add_argument('--logfile', type=str, default=logfile, help="Log file for sensor data (default: logfile)")
+args = parser.parse_args()
 
-# Check for existence of logfile and create if it doesn't exist
-logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
+logfile=args.logfile
 
+# Setup logging. Check for existence of logfile and create if it doesn't exist
 if not os.path.exists(logfile):
+    print(f"Creating new logfile: {logfile}")
     with open(logfile, 'w') as f:
         f.write('================ RoboPet New LogFile ====================\n')
-        f.write('==================\n')
+        f.close()
+
 logging.basicConfig(filename=logfile, level=logging.INFO, format='%(asctime)s %(message)s')
+logging.info('Parser: Port=%s, Baud=%d, Logfile=%s', args.port, args.baud, args.logfile)
 logging.info("\n")
 logging.info('\n============== RoboPet Logging Started ==============')
 
-# Initialize curses environment
+# Setup CV2 version and load a cascade classifier for object detection
+print(cv2.__version__)
+logging.info('CV: Version %s', cv2.__version__)
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+# Setup & Initialize curses environment
 screen = curses.initscr()
 curses.noecho()
 curses.cbreak()
 screen.keypad(True)
-logging.info('Curses: curses initialized...')
+logging.info('Curses: Curses initialized...')
 
 def get_roomba_data(bot):
     try:
@@ -118,6 +131,7 @@ if __name__ == "__main__":
         logging.info('PyCreate - Exception: %s', e)
         logging.info('PyCreate - Exception: No PyCreate Bot attached. Shutting down cleanly.')
         screen.addstr(20, 0, 'No PyCreate Bot attached.')
+        logging.info('Curses - Exception: Cleanly shutting down Curses.')
         curses.nocbreak(); screen.keypad(0); curses.echo()
         curses.endwin()
         time.sleep(0.5)
