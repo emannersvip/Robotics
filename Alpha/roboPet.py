@@ -17,11 +17,16 @@ import time
 
 import pycreate2
 
-from colorama import Fore, Style, init
-
 # Setup global and  environment variables
 logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
 os.environ['QT_QPA_PLATFORM']='xcb'
+red='\033[31m'
+green='\033[32m'
+yellow='\033[33m'
+blue='\033[34m'
+magenta='\033[35m'
+cyan='\033[36m'
+reset='\033[0m'
 
 # Setup argparse for command line arguments
 parser = argparse.ArgumentParser(description='RoboPet - A robotic pet project using iRobot Create 2 and OpenCV for computer vision.')
@@ -56,10 +61,6 @@ curses.cbreak()
 screen.keypad(True)
 logging.info('Curses: Curses initialized...')
 
-# Setup and initialize Colorama for colored terminal output
-init(autoreset=True)
-logging.info('Colorama: Colorama initialized...')
-
 def get_roomba_data(bot):
     try:
         sensors = bot.get_sensors()
@@ -90,7 +91,7 @@ def get_roomba_data(bot):
         screen.addstr(24, 0, f"Battery Capacity: {sensors.battery_capacity}")
         screen.addstr(25, 0, f"Temperature: {sensors.temperature}")
         logging.info('PyCreate: Get Sensors Complete')
-        logging.info('PyCreate: Wall Sensor: %s', sensors.wall)
+        logging.info('PyCreate: Wall Sensor: %s%s%s', cyan, sensors.wall, reset)
         logging.info('PyCreate: Charger State: %s', sensors.charger_state)
         logging.info('PyCreate: Charger Available: %s', sensors.charger_available)
         logging.info('PyCreate: Battery Charge: %s', sensors.battery_charge)
