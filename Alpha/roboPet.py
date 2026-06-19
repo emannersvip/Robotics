@@ -73,12 +73,18 @@ def get_roomba_data(bot):
     
     # Print sensor data
     sensors.wall == sensors[1]
+    sensors.battery_charge == sensors[17]
+    sensors.battery_capacity == sensors[18]
     sensors.charger_state == sensors[13]
     sensors.charger_available == sensors[24]
+    sensors.temperature == sensors[16]
     # Print sensor data & Vacuum Telemetry data
-    screen.addstr(20, 0, str(sensors.wall))
-    screen.addstr(21, 0, str(sensors.charger_state))
-    screen.addstr(22, 0, str(sensors.charger_available))
+    screen.addstr(20, 0, f"Wall Sensor: {sensors.wall}")
+    screen.addstr(21, 0, f"Charger State: {sensors.charger_state}")
+    screen.addstr(22, 0, f"Charger Available: {sensors.charger_available}")
+    screen.addstr(23, 0, f"Battery Charge: {sensors.battery_charge}")
+    screen.addstr(24, 0, f"Battery Capacity: {sensors.battery_capacity}")
+    screen.addstr(25, 0, f"Temperature: {sensors.temperature}")
     return
 
 
@@ -143,31 +149,8 @@ if __name__ == "__main__":
     time.sleep(0.5)
     bot.full()      # You are responsible for handling issues, no protection/safety in this mode ... be careful
 
-    #get_roomba_data()
-    try:
-        sensors = bot.get_sensors()
-    except Exception as e:
-        logging.info('Exception: %s', e)
-        logging.info('Exception: Be sure to cleanly stop bot')
-        curses.nocbreak(); screen.keypad(0); curses.echo()
-        curses.endwin()
-        time.sleep(2)
-        bot.stop()
-        time.sleep(2.0)
-        exit()
-    else:
-        logging.info('Else: No Exceptions moving on.')
-    finally:
-        logging.info('Finally')
-    
-    # Grab sensor data
-    sensors.wall == sensors[1]
-    sensors.charger_state == sensors[13]
-    sensors.charger_available == sensors[24]
-    # Print sensor data & Vacuum Telemetry data
-    screen.addstr(20, 0, str(sensors.wall))
-    screen.addstr(21, 0, str(sensors.charger_state))
-    screen.addstr(22, 0, str(sensors.charger_available))
+    # Roomba is initialized, get data.
+    get_roomba_data(bot)
 
     # Control the bot with keyboard input
     try:
