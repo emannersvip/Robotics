@@ -100,6 +100,14 @@ def get_roomba_data(bot):
 
     return
 
+# Make Roomba sek the dock
+def seek_roomba_dock(bot):
+    logging.info('PyCreate: Seeking Dock')
+    #bot.seek_dock()
+    bot.SCI.write(pycreate2.opcodes.SEEK_DOCK)  # Direct opcode call
+    time.sleep(5.0)
+    logging.info('PyCreate: Seek Dock Complete')
+    return
 
 if __name__ == "__main__":
     # Create a Create2 bots settings
