@@ -182,6 +182,9 @@ if __name__ == "__main__":
                 logging.info('PyCreate - Input: Quitting')
                 time.sleep(1.0)
                 break
+            elif char == ord('s'):
+                seek_roomba_dock(bot)
+                get_roomba_data(bot)
             elif char == curses.KEY_UP:
                 screen.addstr(5, 0, 'up ')
                 logging.info('PyCreate - Input: Up')
