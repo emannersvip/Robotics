@@ -92,11 +92,11 @@ def get_roomba_data(bot):
         screen.addstr(25, 0, f"Temperature: {sensors.temperature}")
         logging.info('PyCreate: Get Sensors Complete')
         logging.info('PyCreate: Wall Sensor: %s%s%s', cyan, sensors.wall, reset)
-        logging.info('PyCreate: Charger State: %s', sensors.charger_state)
-        logging.info('PyCreate: Charger Available: %s', sensors.charger_available)
-        logging.info('PyCreate: Battery Charge: %s', sensors.battery_charge)
-        logging.info('PyCreate: Battery Capacity: %s', sensors.battery_capacity)
-        logging.info('PyCreate: Temperature: %s', sensors.temperature)
+        logging.info('PyCreate: Charger State: %s%s%s', green, sensors.charger_state, reset)
+        logging.info('PyCreate: Charger Available: %s%s%s', yellow, sensors.charger_available, reset)
+        logging.info('PyCreate: Battery Charge: %s%s%s', blue, sensors.battery_charge, reset)
+        logging.info('PyCreate: Battery Capacity: %s%s%s', magenta, sensors.battery_capacity, reset)
+        logging.info('PyCreate: Temperature: %s%s%s', cyan, sensors.temperature, reset)
 
     return
 
