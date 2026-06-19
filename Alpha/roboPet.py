@@ -67,24 +67,30 @@ def get_roomba_data(bot):
         time.sleep(2.0)
         exit()
     else:
-        logging.info('Else: No Exceptions moving on.')
+        logging.info('PyCreate: No Bot Exceptions, moving on.')
     finally:
-        logging.info('Finally')
-    
-    # Print sensor data
-    sensors.wall == sensors[1]
-    sensors.battery_charge == sensors[17]
-    sensors.battery_capacity == sensors[18]
-    sensors.charger_state == sensors[13]
-    sensors.charger_available == sensors[24]
-    sensors.temperature == sensors[16]
-    # Print sensor data & Vacuum Telemetry data
-    screen.addstr(20, 0, f"Wall Sensor: {sensors.wall}")
-    screen.addstr(21, 0, f"Charger State: {sensors.charger_state}")
-    screen.addstr(22, 0, f"Charger Available: {sensors.charger_available}")
-    screen.addstr(23, 0, f"Battery Charge: {sensors.battery_charge}")
-    screen.addstr(24, 0, f"Battery Capacity: {sensors.battery_capacity}")
-    screen.addstr(25, 0, f"Temperature: {sensors.temperature}")
+        # Print sensor data
+        sensors.wall == sensors[1]
+        sensors.battery_charge == sensors[17]
+        sensors.battery_capacity == sensors[18]
+        sensors.charger_state == sensors[13]
+        sensors.charger_available == sensors[24]
+        sensors.temperature == sensors[16]
+        # Print sensor data & Vacuum Telemetry data
+        screen.addstr(20, 0, f"Wall Sensor: {sensors.wall}")
+        screen.addstr(21, 0, f"Charger State: {sensors.charger_state}")
+        screen.addstr(22, 0, f"Charger Available: {sensors.charger_available}")
+        screen.addstr(23, 0, f"Battery Charge: {sensors.battery_charge}")
+        screen.addstr(24, 0, f"Battery Capacity: {sensors.battery_capacity}")
+        screen.addstr(25, 0, f"Temperature: {sensors.temperature}")
+        logging.info('PyCreate: Get Sensors Complete')
+        logging.info('PyCreate: Wall Sensor: %s', sensors.wall)
+        logging.info('PyCreate: Charger State: %s', sensors.charger_state)
+        logging.info('PyCreate: Charger Available: %s', sensors.charger_available)
+        logging.info('PyCreate: Battery Charge: %s', sensors.battery_charge)
+        logging.info('PyCreate: Battery Capacity: %s', sensors.battery_capacity)
+        logging.info('PyCreate: Temperature: %s', sensors.temperature)
+
     return
 
 
@@ -167,24 +173,28 @@ if __name__ == "__main__":
                 bot.drive_direct(50,50)
                 time.sleep(2.0)
                 bot.drive_stop()
+                get_roomba_data(bot)
             elif char == curses.KEY_RIGHT:
                 screen.addstr(5, 0, 'right ')
                 logging.info('PyCreate - Input: Right')
                 bot.drive_direct(-25,25)
                 time.sleep(2.0)
                 bot.drive_stop()
+                get_roomba_data(bot)
             elif char == curses.KEY_DOWN:
                 screen.addstr(5, 0, 'down ')
                 logging.info('PyCreate - Input: Down')
                 bot.drive_direct(-50,-50)
                 time.sleep(2.0)
                 bot.drive_stop()
+                get_roomba_data(bot)
             elif char == curses.KEY_LEFT:
                 screen.addstr(5, 0, 'left ')
                 logging.info('PyCreate - Input: Left')
                 bot.drive_direct(25,-25)
                 time.sleep(2.0)
                 bot.drive_stop()
+                get_roomba_data(bot)
     except Exception as e:
         # Shut down cleanly
         curses.nocbreak(); screen.keypad(0); curses.echo()
