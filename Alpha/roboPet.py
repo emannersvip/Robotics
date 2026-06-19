@@ -215,6 +215,10 @@ if __name__ == "__main__":
                 get_roomba_data(bot)
     except Exception as e:
         # Shut down cleanly
+        logging.info('PyCreate - Exception: %s', e)
+        #logging.info('PyCreate - Exception: No PyCreate Bot attached. Shutting down cleanly.')
+        #screen.addstr(20, 0, 'No PyCreate Bot attached.')
+        logging.info('Curses - Exception: Cleanly shutting down Curses.')
         curses.nocbreak(); screen.keypad(0); curses.echo()
         curses.endwin()
         time.sleep(1)
