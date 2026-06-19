@@ -17,6 +17,8 @@ import time
 
 import pycreate2
 
+from colorama import Fore, Style, init
+
 # Setup global and  environment variables
 logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
 os.environ['QT_QPA_PLATFORM']='xcb'
@@ -53,6 +55,10 @@ curses.noecho()
 curses.cbreak()
 screen.keypad(True)
 logging.info('Curses: Curses initialized...')
+
+# Setup and initialize Colorama for colored terminal output
+init(autoreset=True)
+logging.info('Colorama: Colorama initialized...')
 
 def get_roomba_data(bot):
     try:
