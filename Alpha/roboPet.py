@@ -16,6 +16,7 @@ import os
 import time
 
 import pycreate2
+import pantilthat
 
 # Setup global and environment variables
 logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
@@ -61,7 +62,7 @@ curses.cbreak()
 screen.keypad(True)
 logging.info('Curses: Curses initialized...')
 
-# Setup & Initialize curses environment
+# Setup & Initialize PiMoroni PanTilt environment
 pantilthat.idle_timeout(0.5)
 logging.info('PanTilt: PanTilt initialized...')
 pantilt_a = -23.0
