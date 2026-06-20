@@ -200,7 +200,7 @@ if __name__ == "__main__":
                 logging.info('PyCreate - Input: Quitting')
                 time.sleep(1.0)
                 break
-            elif char == ord('s'):
+            elif char == ord('p'):
                 seek_roomba_dock(bot)
                 get_roomba_data(bot)
             elif char == curses.KEY_UP:
@@ -210,6 +210,11 @@ if __name__ == "__main__":
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
+            elif char == ord('w'):
+                screen.addstr(5, 0, 'w ')
+                logging.info('PanTilt - Input: W')
+                pantilthat.tilt(pantilt_b + pantilt_deltaTilt)
+                time.sleep(0.1)
             elif char == curses.KEY_RIGHT:
                 screen.addstr(5, 0, 'right ')
                 logging.info('PyCreate - Input: Right')
@@ -217,6 +222,11 @@ if __name__ == "__main__":
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
+            elif char == ord('d'):
+                screen.addstr(5, 0, 'd ')
+                logging.info('PanTilt - Input: D')
+                pantilthat.pan(pantilt_a - pantilt_deltaPan)
+                time.sleep(0.1)
             elif char == curses.KEY_DOWN:
                 screen.addstr(5, 0, 'down ')
                 logging.info('PyCreate - Input: Down')
@@ -224,6 +234,11 @@ if __name__ == "__main__":
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
+            elif char == ord('s'):
+                screen.addstr(5, 0, 's ')
+                logging.info('PanTilt - Input: S')
+                pantilthat.tilt(pantilt_b - pantilt_deltaTilt)
+                time.sleep(0.1)
             elif char == curses.KEY_LEFT:
                 screen.addstr(5, 0, 'left ')
                 logging.info('PyCreate - Input: Left')
@@ -231,6 +246,11 @@ if __name__ == "__main__":
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
+            elif char == ord('a'):
+                screen.addstr(5, 0, 'a ')
+                logging.info('PanTilt - Input: A')
+                pantilthat.pan(pantilt_a - pantilt_deltaPan)
+                time.sleep(0.1)
     except Exception as e:
         # Shut down cleanly
         logging.info('PyCreate - Exception: %s', e)
