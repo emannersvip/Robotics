@@ -68,7 +68,9 @@ screen.addstr(1, 0, '#')
 screen.addstr(1, 2, 'RoboPet - A robotic pet project using iRobot Create 2 and OpenCV for computer vision.')
 screen.addstr(2, 0, '#')
 screen.addstr(2, 2, 'Controls: Arrow Keys for Roomba Controls, WASD for Camera Controls')
-screen.addstr(3, 0, '#==============================================================================================#')
+screen.addstr(3, 2, "Diagnostic Output: 'o' for Pan/Tilt, 'p' to seek dock")
+screen.addstr(4, 2, "Quit: 'q' to quit")
+screen.addstr(6, 0, '#==============================================================================================#')
 
 # Setup & Initialize PiMoroni PanTilt environment
 pantilthat.idle_timeout(0.5)
@@ -223,56 +225,56 @@ if __name__ == "__main__":
                 screen.addstr(17, curses_output_offset_x + 5, str(pantilt_b))
                 logging.info('PanTilt - Debug: Pan: %s, Tilt: %s', pantilt_a, pantilt_b)
             elif char == curses.KEY_UP:
-                screen.addstr(4, curses_output_offset_x + 16, 'up ')
+                screen.addstr(8, curses_output_offset_x + 16, 'up ')
                 logging.info('PyCreate - Input: Up')
                 bot.drive_direct(50,50)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('w'):
-                screen.addstr(4, curses_output_offset_x + 1, 'w ')
+                screen.addstr(8, curses_output_offset_x + 1, 'w ')
                 logging.info('PanTilt - Input: W')
                 if (pantilt_b + pantilt_deltaTilt) > -90:
                     pantilt_b = pantilt_b - pantilt_deltaTilt
                 pantilthat.tilt(pantilt_b)
                 time.sleep(0.1)
             elif char == curses.KEY_RIGHT:
-                screen.addstr(5, curses_output_offset_x + 22, 'right ')
+                screen.addstr(9, curses_output_offset_x + 22, 'right ')
                 logging.info('PyCreate - Input: Right')
                 bot.drive_direct(-25,25)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('d'):
-                screen.addstr(5, curses_output_offset_x + 2, 'd ')
+                screen.addstr(9, curses_output_offset_x + 2, 'd ')
                 logging.info('PanTilt - Input: D')
                 if (pantilt_a - pantilt_deltaPan) > -90:
                     pantilt_a = pantilt_a - pantilt_deltaPan
                 pantilthat.pan(pantilt_a)
                 time.sleep(0.1)
             elif char == curses.KEY_DOWN:
-                screen.addstr(6, curses_output_offset_x + 16, 'down ')
+                screen.addstr(10, curses_output_offset_x + 16, 'down ')
                 logging.info('PyCreate - Input: Down')
                 bot.drive_direct(-50,-50)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('s'):
-                screen.addstr(6, curses_output_offset_x + 1, 's ')
+                screen.addstr(10, curses_output_offset_x + 1, 's ')
                 logging.info('PanTilt - Input: S')
                 if (pantilt_b + pantilt_deltaTilt) < 90:
                     pantilt_b = pantilt_b + pantilt_deltaTilt
                 pantilthat.tilt(pantilt_b)
                 time.sleep(0.1)
             elif char == curses.KEY_LEFT:
-                screen.addstr(5, curses_output_offset_x + 12, 'left ')
+                screen.addstr(9, curses_output_offset_x + 12, 'left ')
                 logging.info('PyCreate - Input: Left')
                 bot.drive_direct(25,-25)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('a'):
-                screen.addstr(5, curses_output_offset_x, 'a ')
+                screen.addstr(9, curses_output_offset_x, 'a ')
                 logging.info('PanTilt - Input: A')
                 if (pantilt_a - pantilt_deltaTilt) < 90:
                     pantilt_a = pantilt_a + pantilt_deltaTilt
