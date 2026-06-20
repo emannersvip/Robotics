@@ -73,6 +73,8 @@ try:
 except PermissionError as e:
     logging.error('Can\'t load the pantilt module. Please check the SW or i2c setting in raspi-config.')
     logging.error(e)
+pantilt_deltaPan = 1.0
+pantilt_deltaTilt = 1.0
 
 
 def get_roomba_data(bot):
