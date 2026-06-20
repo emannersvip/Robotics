@@ -108,6 +108,8 @@ def get_roomba_data(bot):
         sensors.charger_available == sensors[24]
         sensors.temperature == sensors[16]
         # Print sensor data & Vacuum Telemetry data
+        screen.addstr(curses_output_offset_y + 3, 0, '#==============================================================================================#')
+        screen.addstr(curses_output_offset_y + 4, 0, '#')
         screen.addstr(curses_output_offset_y + 4, curses_output_offset_x, f"Wall Sensor: {sensors.wall}")
         screen.addstr(curses_output_offset_y + 5, curses_output_offset_x, f"Charger State: {sensors.charger_state}")
         screen.addstr(curses_output_offset_y + 6, curses_output_offset_x, f"Charger Available: {sensors.charger_available}")
@@ -212,6 +214,9 @@ if __name__ == "__main__":
                 seek_roomba_dock(bot)
                 get_roomba_data(bot)
             elif char == ord('o'):
+                screen.addstr(14, 0, '#==============================================================================================#')
+                screen.addstr(15, 0, '#')
+                screen.addstr(15, curses_output_offset_x - 1, 'Pan/Tilt: Diagnostic Output')
                 screen.addstr(16, curses_output_offset_x, 'Pan: ')
                 screen.addstr(16, curses_output_offset_x + 5, str(pantilt_a))
                 screen.addstr(17, curses_output_offset_x, 'Tilt: ')
