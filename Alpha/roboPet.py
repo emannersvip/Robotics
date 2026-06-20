@@ -28,6 +28,8 @@ blue='\033[34m'
 magenta='\033[35m'
 cyan='\033[36m'
 reset='\033[0m'
+curses_output_offset_x = 4
+curses_output_offset_y = 16
 
 # Setup argparse for command line arguments
 parser = argparse.ArgumentParser(description='RoboPet - A robotic pet project using iRobot Create 2 and OpenCV for computer vision.')
@@ -61,6 +63,12 @@ curses.noecho()
 curses.cbreak()
 screen.keypad(True)
 logging.info('Curses: Curses initialized...')
+screen.addstr(0, 0, '#==============================================================================================#')
+screen.addstr(1, 0, '#')
+screen.addstr(1, 2, 'RoboPet - A robotic pet project using iRobot Create 2 and OpenCV for computer vision.')
+screen.addstr(2, 0, '#')
+screen.addstr(2, 2, 'Controls: Arrow Keys for Roomba Controls, WASD for Camera Controls')
+screen.addstr(3, 0, '#==============================================================================================#')
 
 # Setup & Initialize PiMoroni PanTilt environment
 pantilthat.idle_timeout(0.5)
@@ -100,12 +108,12 @@ def get_roomba_data(bot):
         sensors.charger_available == sensors[24]
         sensors.temperature == sensors[16]
         # Print sensor data & Vacuum Telemetry data
-        screen.addstr(20, 0, f"Wall Sensor: {sensors.wall}")
-        screen.addstr(21, 0, f"Charger State: {sensors.charger_state}")
-        screen.addstr(22, 0, f"Charger Available: {sensors.charger_available}")
-        screen.addstr(23, 0, f"Battery Charge: {sensors.battery_charge}")
-        screen.addstr(24, 0, f"Battery Capacity: {sensors.battery_capacity}")
-        screen.addstr(25, 0, f"Temperature: {sensors.temperature}")
+        screen.addstr(curses_output_offset_y + 4, curses_output_offset_x, f"Wall Sensor: {sensors.wall}")
+        screen.addstr(curses_output_offset_y + 5, curses_output_offset_x, f"Charger State: {sensors.charger_state}")
+        screen.addstr(curses_output_offset_y + 6, curses_output_offset_x, f"Charger Available: {sensors.charger_available}")
+        screen.addstr(curses_output_offset_y + 7, curses_output_offset_x, f"Battery Charge: {sensors.battery_charge}")
+        screen.addstr(curses_output_offset_y + 8, curses_output_offset_x, f"Battery Capacity: {sensors.battery_capacity}")
+        screen.addstr(curses_output_offset_y + 9, curses_output_offset_x, f"Temperature: {sensors.temperature}")
         logging.info('PyCreate: Get Sensors Complete')
         logging.info('PyCreate: Wall Sensor: %s%s%s', cyan, sensors.wall, reset)
         logging.info('PyCreate: Charger State: %s%s%s', green, sensors.charger_state, reset)
@@ -160,7 +168,7 @@ if __name__ == "__main__":
         #cv2.destroyWindow('Captured')
     else:
         msg=f"Failed to capture image."
-        screen.addstr(1,20, msg)
+        screen.addstr(32,20, msg)
 
     logging.info('CV: Cleanly releasing capture device')
     cap.release()
@@ -204,62 +212,62 @@ if __name__ == "__main__":
                 seek_roomba_dock(bot)
                 get_roomba_data(bot)
             elif char == ord('o'):
-                screen.addstr(16, 0, 'Pan: ')
-                screen.addstr(16, 5, str(pantilt_a))
-                screen.addstr(17, 0, 'Tilt: ')
-                screen.addstr(17, 5, str(pantilt_b))
+                screen.addstr(16, curses_output_offset_x, 'Pan: ')
+                screen.addstr(16, curses_output_offset_x + 5, str(pantilt_a))
+                screen.addstr(17, curses_output_offset_x, 'Tilt: ')
+                screen.addstr(17, curses_output_offset_x + 5, str(pantilt_b))
                 logging.info('PanTilt - Debug: Pan: %s, Tilt: %s', pantilt_a, pantilt_b)
             elif char == curses.KEY_UP:
-                screen.addstr(4, 16, 'up ')
+                screen.addstr(4, curses_output_offset_x + 16, 'up ')
                 logging.info('PyCreate - Input: Up')
                 bot.drive_direct(50,50)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('w'):
-                screen.addstr(4, 1, 'w ')
+                screen.addstr(4, curses_output_offset_x + 1, 'w ')
                 logging.info('PanTilt - Input: W')
                 if (pantilt_b + pantilt_deltaTilt) > -90:
                     pantilt_b = pantilt_b - pantilt_deltaTilt
                 pantilthat.tilt(pantilt_b)
                 time.sleep(0.1)
             elif char == curses.KEY_RIGHT:
-                screen.addstr(5, 22, 'right ')
+                screen.addstr(5, curses_output_offset_x + 22, 'right ')
                 logging.info('PyCreate - Input: Right')
                 bot.drive_direct(-25,25)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('d'):
-                screen.addstr(5, 2, 'd ')
+                screen.addstr(5, curses_output_offset_x + 2, 'd ')
                 logging.info('PanTilt - Input: D')
                 if (pantilt_a - pantilt_deltaPan) > -90:
                     pantilt_a = pantilt_a - pantilt_deltaPan
                 pantilthat.pan(pantilt_a)
                 time.sleep(0.1)
             elif char == curses.KEY_DOWN:
-                screen.addstr(6, 16, 'down ')
+                screen.addstr(6, curses_output_offset_x + 16, 'down ')
                 logging.info('PyCreate - Input: Down')
                 bot.drive_direct(-50,-50)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('s'):
-                screen.addstr(6, 1, 's ')
+                screen.addstr(6, curses_output_offset_x + 1, 's ')
                 logging.info('PanTilt - Input: S')
                 if (pantilt_b + pantilt_deltaTilt) < 90:
                     pantilt_b = pantilt_b + pantilt_deltaTilt
                 pantilthat.tilt(pantilt_b)
                 time.sleep(0.1)
             elif char == curses.KEY_LEFT:
-                screen.addstr(5, 12, 'left ')
+                screen.addstr(5, curses_output_offset_x + 12, 'left ')
                 logging.info('PyCreate - Input: Left')
                 bot.drive_direct(25,-25)
                 time.sleep(2.0)
                 bot.drive_stop()
                 get_roomba_data(bot)
             elif char == ord('a'):
-                screen.addstr(5, 0, 'a ')
+                screen.addstr(5, curses_output_offset_x, 'a ')
                 logging.info('PanTilt - Input: A')
                 if (pantilt_a - pantilt_deltaTilt) < 90:
                     pantilt_a = pantilt_a + pantilt_deltaTilt
