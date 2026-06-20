@@ -210,7 +210,7 @@ if __name__ == "__main__":
                 screen.addstr(17, 5, str(pantilt_b))
                 logging.info('PanTilt - Debug: Pan: %s, Tilt: %s', pantilt_a, pantilt_b)
             elif char == curses.KEY_UP:
-                screen.addstr(5, 16, 'up ')
+                screen.addstr(4, 16, 'up ')
                 logging.info('PyCreate - Input: Up')
                 bot.drive_direct(50,50)
                 time.sleep(2.0)
@@ -219,10 +219,12 @@ if __name__ == "__main__":
             elif char == ord('w'):
                 screen.addstr(4, 1, 'w ')
                 logging.info('PanTilt - Input: W')
-                pantilthat.tilt(pantilt_b + pantilt_deltaTilt)
+                if (pantilt_b + pantilt_deltaTilt) > -90:
+                    pantilt_b = pantilt_b - pantilt_deltaTilt
+                pantilthat.tilt(pantilt_b)
                 time.sleep(0.1)
             elif char == curses.KEY_RIGHT:
-                screen.addstr(5, 16, 'right ')
+                screen.addstr(5, 22, 'right ')
                 logging.info('PyCreate - Input: Right')
                 bot.drive_direct(-25,25)
                 time.sleep(2.0)
@@ -231,10 +233,12 @@ if __name__ == "__main__":
             elif char == ord('d'):
                 screen.addstr(5, 2, 'd ')
                 logging.info('PanTilt - Input: D')
-                pantilthat.pan(pantilt_a - pantilt_deltaPan)
+                if (pantilt_a - pantilt_deltaPan) > -90:
+                    pantilt_a = pantilt_a - pantilt_deltaPan
+                pantilthat.pan(pantilt_a)
                 time.sleep(0.1)
             elif char == curses.KEY_DOWN:
-                screen.addstr(5, 16, 'down ')
+                screen.addstr(6, 16, 'down ')
                 logging.info('PyCreate - Input: Down')
                 bot.drive_direct(-50,-50)
                 time.sleep(2.0)
@@ -243,10 +247,12 @@ if __name__ == "__main__":
             elif char == ord('s'):
                 screen.addstr(6, 1, 's ')
                 logging.info('PanTilt - Input: S')
-                pantilthat.tilt(pantilt_b - pantilt_deltaTilt)
+                if (pantilt_b + pantilt_deltaTilt) < 90:
+                    pantilt_b = pantilt_b + pantilt_deltaTilt
+                pantilthat.tilt(pantilt_b)
                 time.sleep(0.1)
             elif char == curses.KEY_LEFT:
-                screen.addstr(5, 16, 'left ')
+                screen.addstr(5, 12, 'left ')
                 logging.info('PyCreate - Input: Left')
                 bot.drive_direct(25,-25)
                 time.sleep(2.0)
@@ -255,7 +261,9 @@ if __name__ == "__main__":
             elif char == ord('a'):
                 screen.addstr(5, 0, 'a ')
                 logging.info('PanTilt - Input: A')
-                pantilthat.pan(pantilt_a - pantilt_deltaPan)
+                if (pantilt_a - pantilt_deltaTilt) < 90:
+                    pantilt_a = pantilt_a + pantilt_deltaTilt
+                pantilthat.pan(pantilt_a)
                 time.sleep(0.1)
     except Exception as e:
         # Shut down cleanly
