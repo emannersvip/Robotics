@@ -7,3 +7,4 @@ pip           25.1.1
 pycreate2     0.8.0
 pyserial      3.5
 simplejson    4.1.1
+smbus         1.1.post2

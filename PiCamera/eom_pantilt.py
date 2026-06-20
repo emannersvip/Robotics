@@ -7,6 +7,8 @@
 # raspi-config i2c HAS to be anabled.
 ## There is currently no easy way of checking this in Python.
 
+# sudo apt-get install python3-smbus
+
 import curses
 import time
 

@@ -17,7 +17,7 @@ import time
 
 import pycreate2
 
-# Setup global and  environment variables
+# Setup global and environment variables
 logfile='/home/emanners/Documents/Git/Robotics/Alpha/sensor.log'
 os.environ['QT_QPA_PLATFORM']='xcb'
 red='\033[31m'
@@ -60,6 +60,19 @@ curses.noecho()
 curses.cbreak()
 screen.keypad(True)
 logging.info('Curses: Curses initialized...')
+
+# Setup & Initialize curses environment
+pantilthat.idle_timeout(0.5)
+logging.info('PanTilt: PanTilt initialized...')
+pantilt_a = -23.0
+pantilt_b = -13.0
+try:
+    pantilthat.pan(pantilt_a)
+    pantilthat.tilt(pantilt_b)
+except PermissionError as e:
+    logging.error('Can\'t load the pantilt module. Please check the SW or i2c setting in raspi-config.')
+    logging.error(e)
+
 
 def get_roomba_data(bot):
     try:
@@ -228,6 +241,7 @@ if __name__ == "__main__":
     
     # Cleanup and shutdown the bot and curses environment
     logging.info('Exit: Shutting down bot and curses environment')
+    logging.info('Exit: ---------------- GOODBYE! ------------------------')
     print('Bot drive stop')
     curses.nocbreak(); screen.keypad(0); curses.echo()
     curses.endwin()
